@@ -1,102 +1,289 @@
 <%= form_for([@phase.project, @phase]) do |f| %>
-  <% if @phase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@phase.errors.count, "error") %> prohibited this phase from being saved:</h2>
+<% if @phase.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@phase.errors.count, "error") %>
+        prohibited this phase from being saved:</h2>
 
-      <ul>
-      <% @phase.errors.full_messages.each do |message| %>
+    <ul>
+        <% @phase.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.datetime_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.datetime_select :end_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :interval %>
-    <%= f.number_field :interval %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sequence %>
-    <%= f.number_field :sequence %>
-  </div>
-
-  <div class="field">
-    <%= f.label :long_term_vision %>
-    <%= f.text_area :long_term_vision %>
-  </div>
-
-  <div class="field">
-    <%= f.label :kpi_s %>
-    <%= f.text_area :kpi_s %>
-  </div>
-
-  <div class="field">
-    <%= f.label :criteria %>
-    <%= f.text_area :criteria %>
-  </div>
-
-  <div class="field">
-    <%= f.label :bottlenecks %>
-    <%= f.text_area :bottlenecks %>
-  </div>
-
-  <div class="field">
-    <%= f.label :problem_definition %>
-    <%= f.text_area :problem_definition %>
-  </div>
-
-  <div class="field">
-    <%= f.label :solutions %>
-    <%= f.text_area :solutions %>
-  </div>
-
-  <div class="field">
-    <%= f.label :long_term %>
-    <%= f.text_area :long_term %>
-  </div>
-
-  <div class="field">
-    <%= f.label :key_benefits %>
-    <%= f.text_area :key_benefits %>
-  </div>
-
-  <div class="field">
-    <%= f.label :vision %>
-    <%= f.text_area :vision %>
-  </div>
-
-  <div class="field">
-    <%= f.label :test_first %>
-    <%= f.text_area :test_first %>
-  </div>
-
-  <div class="field">
-    <%= f.label :proof_of_value %>
-    <%= f.text_area :proof_of_value %>
-  </div>
-
-  <div class="field">
-    <%= f.label :background %>
-    <%= f.text_area :background %>
-  </div>
-
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+        <% end %>
+    </ul>
+</div>
 <% end %>
+
+<div class="container">
+    <hr>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <h4 class="panel-title">
+                        <%= f.label :start_date %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <%= f.datetime_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <h4 class="panel-title">
+                      <%= f.label :end_date %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.datetime_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <h4 class="panel-title">
+                      <%= f.label :interval %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <p>How many weeks will your sprint run?</p>
+                      <%= f.number_field :interval, class:"form-control", placeholder: "0" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <h4 class="panel-title">
+                      <%= f.label :sequence %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.number_field :sequence, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                    <h4 class="panel-title">
+                      <%= f.label :long_term_vision %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :long_term_vision, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                    <h4 class="panel-title">
+                      <%= f.label :kpi_s %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :kpi_s, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                    <h4 class="panel-title">
+                      <%= f.label :criteria %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :criteria, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+                    <h4 class="panel-title">
+                      <%= f.label :bottlenecks %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <%= f.text_area :bottlenecks, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                    <h4 class="panel-title">
+                      <%= f.label :problem_definition %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :problem_definition, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+                    <h4 class="panel-title">
+                      <%= f.label :solutions %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <%= f.text_area :solutions, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">
+                    <h4 class="panel-title">
+                      <%= f.label :long_term %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :long_term, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">
+                    <h4 class="panel-title">
+                      <%= f.label :key_benefits %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseTwelve" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :key_benefits, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">
+                    <h4 class="panel-title">
+                      <%= f.label :vision %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseThirteen" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :vision, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">
+                    <h4 class="panel-title">
+                      <%= f.label :test_first %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseFourteen" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :test_first, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">
+                    <h4 class="panel-title">
+                      <%= f.label :proof_of_value %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseFifteen" class="panel-collapse collapse">
+                <div class="panel-body">
+                      <%= f.text_area :proof_of_value, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
+                    <h4 class="panel-title">
+                      <%= f.label :background %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseSixteen" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :background, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">
+                    <h4 class="panel-title">
+                      <%= f.label :note %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseSeventeen" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :note, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="actions">
+          <%= f.submit :Submit, class: 'btn btn-success' %>
+      </div>
+</div>
+<% end %>
+<!-- <script>
+$(function() {
+    $('#accordion').on('mouseenter.collapse.data-api', '[data-toggle=collapse]', function(e) {
+        var $this = $(this),
+            href, target = $this.attr('data-target') || e.preventDefault() || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
+            ,
+            option = $(target).data('collapse') ? 'show' : $this.data()
+            $(target).collapse(option)
+    })
+})
+</script> -->
