@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.email %> !</h1>
+
+    <h4>
+      Project <em><%= project.name %></em> is completing the following sprints this week
+    </h4>
+
+    <% sprints.each do |spint| %>
+    <p><%= sprint.id %></p>
+    <% end %>
+
+  </body>
+</html>

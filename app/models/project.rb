@@ -4,9 +4,10 @@ class Project < ApplicationRecord
 
   STAGES = ['Explore', 'Experiment', 'Grow', 'Scale']
 
-  def get_users_at_end_sprint_current_phase(project_id)
-    project = project.find(project_id)
-    current_phase = Phase.find(project.current_phase)
+  def get_mailer_for_current_phase
+
+    project = Project.find(self.id)
+    current_phase = Phase.find(project.current_stage_id)
     users = current_phase.team.users
     sprints = []
     current_phase.sprints.each do |sprint|
@@ -16,7 +17,8 @@ class Project < ApplicationRecord
       end
     end
 
-    return {users: users, sprints:sprints}
+    {users: users, sprints:sprints}
+
   end
-  
+
 end
