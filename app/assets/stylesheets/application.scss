@@ -28,8 +28,6 @@
   padding: 5px 5px;
 }
 
-
-
 .glyphicon {
   color: #fff;;
 }
@@ -37,6 +35,15 @@
 .darkblue {
   background-color: #02436a;
   border: 0px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+  color: #fff;
+}
+
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+  background-color: #1996e0;
+  border-top: 2px solid #1996e0;
 }
 
 .lightblue {
