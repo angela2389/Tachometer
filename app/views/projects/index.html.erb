@@ -2,56 +2,56 @@
 
 <h3>Active Projects</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+  <% @projects.each do |project| %>
+  <div class="col-md-3 col-sm-6 text-center">
+      <div class="panel panel-default">
+          <%= link_to project do %>
+          <div class="panel-body" style="height: 80px">
+              <% if project.active == true %>
+              <td><%= project.name %></td><br>
+              <td>active:
+                  <%= is_active?(project) %></td>
+              <% end %>
+          </div>
+          <% end %>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <% if project.active == true %>
-        <td><%= link_to project.name, project %></td>
-        <td><%= project.description %></td>
-        <td><%= is_active?(project) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+      </div>
+  </div>
+  <% end %>
 
-</table>
+  <div class="col-md-3 col-sm-6 text-center">
+      <div class="panel panel-default">
+          <div class="panel-body" style="height: 80px">
+              <td><%= link_to 'Create a new project..', new_project_path %></td>
+          </div>
+      </div>
+  </div>
 
+</div>
 <br>
-
-<h3><%= link_to 'Create a new project..', new_project_path %> </h3>
-<br>
-<h2> Past Projects </h2>
+<h3>Past Projects</h3>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Active</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <% if project.active == false %>
-        <td><%= link_to project.name, project %></td>
-        <td><%= project.description %></td>
-        <td><%= is_active?(project) %></td>
+    <tbody>
+        <% @projects.each do |project| %>
+        <tr>
+            <% if project.active == false %>
+            <td><%= link_to project.name, project %></td>
+            <td><%= project.description %></td>
+            <td><%= is_active?(project) %></td>
+            <% end %>
+        </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+    </tbody>
 
 </table>
