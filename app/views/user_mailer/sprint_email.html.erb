@@ -4,15 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @user.email %> !</h1>
+    <p>Hi <%= @user.email %>,</p>
 
-    <h4>
-      Project <em><%= project.name %></em> is completing the following sprints this week
-    </h4>
-
-    <% sprints.each do |spint| %>
-    <p><%= sprint.id %></p>
-    <% end %>
+    <p>
+      Project <em><%= @project.name %></em>, currently in
+      <em><%= @project.current_phase.name %></em> phase, is completing a sprint this week. 
+       Remember to fill in the perspective form!
+    </p>
 
   </body>
 </html>
