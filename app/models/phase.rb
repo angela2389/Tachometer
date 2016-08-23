@@ -4,7 +4,7 @@ class Phase < ApplicationRecord
   has_one :team
 
   def name
-    Project::STAGES[:sequence]
+    Project::STAGES[self.sequence]
   end
 
 end
