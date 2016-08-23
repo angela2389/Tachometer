@@ -15,3 +15,45 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ main {
+   padding-top: 80px;
+}
+
+.navbar-default {
+  background-color: #026aa7;
+}
+
+.navbar-brand {
+  padding: 5px 5px;
+}
+
+
+
+.glyphicon {
+  color: #fff;;
+}
+
+.darkblue {
+  background-color: #02436a;
+  border: 0px;
+}
+
+.lightblue {
+  background-color: #1996e0;
+  border: 0px;
+}
+
+.form-control::-webkit-input-placeholder { color: white; }
+.form-control:-moz-placeholder { color: white; }
+.form-control::-moz-placeholder { color: white; }
+.form-control:-ms-input-placeholder { color: white; }
+
+.navbar-nav > li > a{
+  margin: 8px;
+  padding: 7px 10px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
