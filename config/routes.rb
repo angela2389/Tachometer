@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :sprints
   resources :experiments
-  resources :projects
+  resources :projects do
   resources :phases
+end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'projects#index'

@@ -1,6 +1,6 @@
 <h1>Editing Phase</h1>
 
-<%= render 'form', phase: @phase %>
+<%= render 'form' %>
 
-<%= link_to 'Show', @phase %> |
-<%= link_to 'Back', phases_path %>
+<%= link_to 'Show', [@phase.project, @phase] %> |
+<%= link_to 'Back', project_phases_path(@phase.project) %>

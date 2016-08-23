@@ -4,7 +4,8 @@ class PhasesController < ApplicationController
   # GET /phases
   # GET /phases.json
   def index
-    @phases = Phase.all
+    project = Project.find(params[:project_id])
+    @phases = project.phases
   end
 
   # GET /phases/1
@@ -14,7 +15,8 @@ class PhasesController < ApplicationController
 
   # GET /phases/new
   def new
-    @phase = Phase.new
+    project = Project.find(params[:project_id])
+    @phase = project.phases.new
   end
 
   # GET /phases/1/edit
@@ -24,11 +26,12 @@ class PhasesController < ApplicationController
   # POST /phases
   # POST /phases.json
   def create
-    @phase = Phase.new(phase_params)
+    project = Project.find(params[:project_id])
+    @phase = project.phases.new(phase_params)
 
     respond_to do |format|
       if @phase.save
-        format.html { redirect_to @phase, notice: 'Phase was successfully created.' }
+        format.html { redirect_to [@phase.project, @phase], notice: 'Phase was successfully created.' }
         format.json { render :show, status: :created, location: @phase }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class PhasesController < ApplicationController
   def update
     respond_to do |format|
       if @phase.update(phase_params)
-        format.html { redirect_to @phase, notice: 'Phase was successfully updated.' }
+        format.html { redirect_to [@phase.project, @phase], notice: 'Phase was successfully updated.' }
         format.json { render :show, status: :ok, location: @phase }
       else
         format.html { render :edit }
@@ -64,7 +67,8 @@ class PhasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phase
-      @phase = Phase.find(params[:id])
+      project = Project.find(params[:project_id])
+      @phase = project.phases.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
