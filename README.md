@@ -9,23 +9,65 @@ Through Tachometer you can measure the developers team progress on projects.
 3. Create model Project, Sprint and Expirement
 4. Create Devise(Users)
 
-
 ### Database Structure
   Models
 
   - Project:
+    - ID
+    - Name
+    - Description
+    - Active
+    - Created_at
+    - Updated_at
+    - Current stage id
 
   - Phase:
+    - Start_date
+    - End_date
+    - Interval
+    - Sequence
+    - Long_term_vision
+    - KPI's
+    - Criteria
+    - Bottlenecks
+    - Problem_definition
+    - Solutions
+    - Long_term
+    - Key_benefits
+    - Vision
+    - Test_first
+    - Proof_of_value
+    - Background
 
   - Sprint:
+    - ID
+    - Name
+    - Start_date
+    - End_date
+    - Completed
+    - Created_at
+    - Updated_at
 
   - Experiment:
+    - ID
+    - Name
+    - Start_date
+    - End_date
+    - Completed
+    - Created_at
+    - Updated_at
 
+    - Team:
+      - ID
+      - Phase_id
+      - Created_at
+      - Updated_at
 
+    
 ### Running Locally
 https://github.com/angela2389/Tachometer
 SSH: git@github.com:angela2389/Tachometer.git
-Deis: 
+Deis: http://tacho-meter.codaisseur.cloud
 
 * Ruby version
 
