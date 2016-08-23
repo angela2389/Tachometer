@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+  before_filter
   include SprintEmail # method "run_mailer(project)" is now available for project
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]

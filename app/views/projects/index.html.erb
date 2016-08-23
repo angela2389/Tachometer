@@ -17,7 +17,7 @@
     <% end %>
     <% end %>
     <div class="col-md-3 col-sm-6 text-center">
-      <% if can? :create, Project %>
+      <% if user_signed_in? %>
         <%= link_to new_project_path do %>
           <div class="panel panel-default">
               <div class="panel-body" style="height: 80px">
