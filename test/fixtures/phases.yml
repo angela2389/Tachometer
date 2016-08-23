@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2016-08-23 10:22:00
+  end_date: 2016-08-23 10:22:00
+  interval: 1
+  sequence: 1
+  long_term_vision: MyText
+  kpi_s: MyText
+  criteria: MyText
+  bottlenecks: MyText
+  problem_definition: MyText
+  solutions: MyText
+  long_term: MyText
+  key_benefits: MyText
+  vision: MyText
+  test_first: MyText
+  proof_of_value: MyText
+  background: MyText
+  note: MyText
+
+two:
+  start_date: 2016-08-23 10:22:00
+  end_date: 2016-08-23 10:22:00
+  interval: 1
+  sequence: 1
+  long_term_vision: MyText
+  kpi_s: MyText
+  criteria: MyText
+  bottlenecks: MyText
+  problem_definition: MyText
+  solutions: MyText
+  long_term: MyText
+  key_benefits: MyText
+  vision: MyText
+  test_first: MyText
+  proof_of_value: MyText
+  background: MyText
+  note: MyText
