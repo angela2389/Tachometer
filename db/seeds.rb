@@ -1,10 +1,9 @@
-
 # Delete all resources (in inverse order of appearence please!)
-
+TeamMember.delete_all
+Team.delete_all
+Sprint.delete_all
+Phase.delete_all
 Project.delete_all
-# Team.delete_all
-# Phase.delete_all
-# Sprint.delete_all
 # Experiment.delete_all
 User.delete_all
 
@@ -19,39 +18,6 @@ user6 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
 
 # Experiments
 
-
-# Phases (project/phase)
-
-phase1_1 = Phase.create( sequence: 0, interval: 1 )
-phase1_2 = Phase.create( sequence: 1, interval: 1 )
-phase1_3 = Phase.create( sequence: 2, interval: 1 )
-phase1_4 = Phase.create( sequence: 3, interval: 1 )
-
-phase2_1 = Phase.create( sequence: 0, interval: 1 )
-
-# Sprints (project/phase/sprint)
-sprint1_1_1 = Sprint.create(
-  start_date: Date.today - 2,
-  end_date: Date.today + 5,
-  completed: false,
-  phase: phase1_1
-)
-sprint1_1_2 = Sprint.create(
-  start_date: Date.today + 6,
-  end_date: Date.today + 13,
-  completed: false,
-  phase: phase1_1
-)
-
-# Teams (project/phase/team)
-
-team1_1_1 = Team.create( phase: phase1_1 )
-
-# Team Members (project/phase/team/user)
-
-team_members1_1_1_1 = TeamMember.create(team: team1_1_1, user: user1, role: "Product Owner")
-team_members1_1_1_2 = TeamMember.create(team: team1_1_1, user: user2, role: "Team Member")
-
 # Projects
 
 project1 = Project.create(
@@ -60,7 +26,7 @@ project1 = Project.create(
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
-  current_stage_id: phase1_1.id
+  # current_stage_id: phase1_1.id
 )
 project2 = Project.create(
   name: "project ipsum 2",
@@ -68,7 +34,7 @@ project2 = Project.create(
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
-  current_stage_id: phase2_1.id
+  # current_stage_id: phase2_1.id
 )
 
 project3 = Project.create(
@@ -94,3 +60,41 @@ project5 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true
 )
+
+# Phases (project/phase)
+
+phase1_1 = Phase.create( sequence: 0, interval: 1, project: project1 )
+phase1_2 = Phase.create( sequence: 1, interval: 1, project: project1 )
+phase1_3 = Phase.create( sequence: 2, interval: 1, project: project1 )
+phase1_4 = Phase.create( sequence: 3, interval: 1, project: project1 )
+
+phase2_1 = Phase.create( sequence: 0, interval: 1, project: project2 )
+
+# Add cuurent_stage_id
+project1.current_stage_id = phase1_3.id
+project1.save
+project2.current_stage_id = phase2_1.id
+project2.save
+
+# Sprints (project/phase/sprint)
+sprint1_1_1 = Sprint.create(
+  start_date: Date.today - 2,
+  end_date: Date.today + 5,
+  completed: false,
+  phase: phase1_1
+)
+sprint1_1_2 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase1_1
+)
+
+# Teams (project/phase/team)
+
+team1_1_1 = Team.create( phase: phase1_1 )
+
+# Team Members (project/phase/team/user)
+
+team_members1_1_1_1 = TeamMember.create(team: team1_1_1, user: user1, role: "Product Owner")
+team_members1_1_1_2 = TeamMember.create(team: team1_1_1, user: user2, role: "Team Member")
