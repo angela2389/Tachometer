@@ -52,9 +52,10 @@
 }
 
 .form-control::-webkit-input-placeholder { color: white; }
-.form-control:-moz-placeholder { color: white; }
-.form-control::-moz-placeholder { color: white; }
-.form-control:-ms-input-placeholder { color: white; }
+
+.form-control {
+  color: #fff;
+}
 
 .navbar-nav > li > a{
   margin: 8px;
