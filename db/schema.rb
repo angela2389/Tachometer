@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20160823095138) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "team_members", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_members_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_team_members_on_user_id", using: :btree
+  end
+
   create_table "teams", force: :cascade do |t|
     t.integer  "phase_id"
     t.datetime "created_at", null: false
@@ -90,5 +100,7 @@ ActiveRecord::Schema.define(version: 20160823095138) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "team_members", "teams"
+  add_foreign_key "team_members", "users"
   add_foreign_key "teams", "phases"
 end
