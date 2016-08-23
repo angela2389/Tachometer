@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Phases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Interval</th>
+      <th>Sequence</th>
+      <th>Long term vision</th>
+      <th>Kpi s</th>
+      <th>Criteria</th>
+      <th>Bottlenecks</th>
+      <th>Problem definition</th>
+      <th>Solutions</th>
+      <th>Long term</th>
+      <th>Key benefits</th>
+      <th>Vision</th>
+      <th>Test first</th>
+      <th>Proof of value</th>
+      <th>Background</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @phases.each do |phase| %>
+      <tr>
+        <td><%= phase.start_date %></td>
+        <td><%= phase.end_date %></td>
+        <td><%= phase.interval %></td>
+        <td><%= phase.sequence %></td>
+        <td><%= phase.long_term_vision %></td>
+        <td><%= phase.kpi_s %></td>
+        <td><%= phase.criteria %></td>
+        <td><%= phase.bottlenecks %></td>
+        <td><%= phase.problem_definition %></td>
+        <td><%= phase.solutions %></td>
+        <td><%= phase.long_term %></td>
+        <td><%= phase.key_benefits %></td>
+        <td><%= phase.vision %></td>
+        <td><%= phase.test_first %></td>
+        <td><%= phase.proof_of_value %></td>
+        <td><%= phase.background %></td>
+        <td><%= phase.note %></td>
+        <td><%= link_to 'Show', phase %></td>
+        <td><%= link_to 'Edit', edit_phase_path(phase) %></td>
+        <td><%= link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Phase', new_phase_path %>

@@ -1,0 +1,2 @@
+json.extract! phase, :id, :start_date, :end_date, :interval, :sequence, :long_term_vision, :kpi_s, :criteria, :bottlenecks, :problem_definition, :solutions, :long_term, :key_benefits, :vision, :test_first, :proof_of_value, :background, :note, :created_at, :updated_at
+json.url phase_url(phase, format: :json)
