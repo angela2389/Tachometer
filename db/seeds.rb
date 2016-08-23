@@ -1,15 +1,47 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+# Delete all resources (in inverse order of appearence please!)
+
+Project.delete_all
+# Team.delete_all
+# Phase.delete_all
+# Sprint.delete_all
+# Experiment.delete_all
 User.delete_all
 
-User.create( email: 'stefano@ex.com', password: 'abcd1234' )
-User.create( email: 'marc@ex.com', password: 'abcd1234' )
-User.create( email: 'christiaan@ex.com', password: 'abcd1234' )
-User.create( email: 'angela@ex.com', password: 'abcd1234' )
-User.create( email: 'timmo@ex.com', password: 'abcd1234' )
-User.create( email: 'douwe@ex.com', password: 'abcd1234' )
+# Users
+
+user1 = User.create( email: 'stefano@ex.com', password: 'abcd1234' )
+user2 = User.create( email: 'marc@ex.com', password: 'abcd1234' )
+user3 = User.create( email: 'christiaan@ex.com', password: 'abcd1234' )
+user4 = User.create( email: 'angela@ex.com', password: 'abcd1234' )
+user5 = User.create( email: 'timmo@ex.com', password: 'abcd1234' )
+user6 = User.create( email: 'douwe@ex.com', password: 'abcd1234' )
+
+# Experiments
+
+
+# Sprints
+
+
+# Phases
+
+
+# Teams
+
+
+# Projects
+
+project1 = Project.create(
+  name: "project ipsum 1",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
+  active: true
+)
+project2 = Project.create(
+  name: "project ipsum 2",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
+  active: true
+)
