@@ -45,3 +45,27 @@ project2 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true
 )
+
+project3 = Project.create(
+  name: "project ipsum 3",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
+  active: false
+)
+
+project4 = Project.create(
+  name: "project ipsum 4",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
+  active: false
+)
+
+project5 = Project.create(
+  name: "project ipsum 5",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
+  active: true
+)
