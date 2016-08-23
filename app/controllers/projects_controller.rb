@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @project.phases.build
   end
 
   # GET /projects/1/edit
@@ -35,11 +36,9 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    authorize! :create, @project
-
     respond_to do |format|
       if @project.save
-        format.html { redirect_to new_project_phase_path(@project) }
+        format.html { redirect_to project_phases_path(@project) }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -80,6 +79,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :active)
+      params.require(:project).permit(:name, :description, :active, phases_attributes: [:id,:sequence])
     end
 end
