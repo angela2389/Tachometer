@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<h3>Active Projects</h3>
 
 <table>
   <thead>
@@ -15,17 +15,43 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
+        <% if project.active == true %>
+        <td><%= link_to project.name, project %></td>
         <td><%= project.description %></td>
-        <td><%= project.active %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= is_active?(project) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
+
 </table>
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<h3><%= link_to 'Create a new project..', new_project_path %> </h3>
+<br>
+<h2> Past Projects </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <% if project.active == false %>
+        <td><%= link_to project.name, project %></td>
+        <td><%= project.description %></td>
+        <td><%= is_active?(project) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
