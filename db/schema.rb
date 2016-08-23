@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160823095138) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "phases", "projects"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "phases"
