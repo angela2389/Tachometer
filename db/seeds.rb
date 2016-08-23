@@ -1,11 +1,11 @@
 
 # Delete all resources (in inverse order of appearence please!)
 
-Projects.delete_all
-# Teams.delete_all
-# Phases.delete_all
-# Sprints.delete_all
-# Experiments.delete_all
+Project.delete_all
+# Team.delete_all
+# Phase.delete_all
+# Sprint.delete_all
+# Experiment.delete_all
 User.delete_all
 
 # Users
