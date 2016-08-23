@@ -1,5 +1,14 @@
 class ProjectsController < ApplicationController
+
+  include SprintEmail # method "run_mailer" is now available for current user
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+
+  def send_weekly_emails
+    user_id = params[:user_id]
+    user = User.find(user_id)
+    run_mailer(user)
+  end
 
   # GET /projects
   # GET /projects.json

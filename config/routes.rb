@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   root 'projects#index'
 
+  post 'send_weekly_emails' => 'projects#send_weekly_emails', as: :email_sent
+
 end

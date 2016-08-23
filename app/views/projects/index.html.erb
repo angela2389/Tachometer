@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= button_to "Send weekly emails", user_id: current_user.id, action: "send_weekly_emails" %>
+
 <h3>Active Projects</h3>
 
 <div class="container block">
