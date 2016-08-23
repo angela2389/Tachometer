@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    authorize! :read, @projects
   end
 
   # GET /projects/1
@@ -34,6 +35,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    authorize! :create, @project
 
     respond_to do |format|
       if @project.save
