@@ -10,24 +10,47 @@ User.delete_all
 
 # Users
 
-user1 = User.create( email: 'stefano@ex.com', password: 'abcd1234' )
-user2 = User.create( email: 'marc@ex.com', password: 'abcd1234' )
-user3 = User.create( email: 'christiaan@ex.com', password: 'abcd1234' )
-user4 = User.create( email: 'angela@ex.com', password: 'abcd1234' )
-user5 = User.create( email: 'timmo@ex.com', password: 'abcd1234' )
-user6 = User.create( email: 'douwe@ex.com', password: 'abcd1234' )
+user1 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user2 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user3 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user4 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user5 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user6 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
 
 # Experiments
 
 
-# Sprints
+# Phases (project/phase)
 
+phase1_1 = Phase.create( sequence: 0, interval: 1 )
+phase1_2 = Phase.create( sequence: 1, interval: 1 )
+phase1_3 = Phase.create( sequence: 2, interval: 1 )
+phase1_4 = Phase.create( sequence: 3, interval: 1 )
 
-# Phases
+phase2_1 = Phase.create( sequence: 0, interval: 1 )
 
+# Sprints (project/phase/sprint)
+sprint1_1_1 = Sprint.create(
+  start_date: Date.today - 2,
+  end_date: Date.today + 5,
+  completed: false,
+  phase: phase1_1
+)
+sprint1_1_2 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase1_1
+)
 
-# Teams
+# Teams (project/phase/team)
 
+team1_1_1 = Team.create( phase: phase1_1 )
+
+# Team Members (project/phase/team/user)
+
+team_members1_1_1_1 = TeamMember.create(team: team1_1_1, user: user1, role: "Product Owner")
+team_members1_1_1_2 = TeamMember.create(team: team1_1_1, user: user2, role: "Team Member")
 
 # Projects
 
@@ -36,14 +59,16 @@ project1 = Project.create(
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
-  active: true
+  active: true,
+  current_stage_id: phase1_1.id
 )
 project2 = Project.create(
   name: "project ipsum 2",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
-  active: true
+  active: true,
+  current_stage_id: phase2_1.id
 )
 
 project3 = Project.create(
