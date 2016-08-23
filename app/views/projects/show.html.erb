@@ -15,9 +15,39 @@
   <%= @project.active %>
 </p>
 
+<div class="phase_overview">
+  <% if @project.phases.length > 0 %>
+    <table class="phase_table">
+      <tr class="top_row">
+        <th>Current</th>
+        <th>Phase</th>
+        <th>Start date</th>
+        <th>End date</th>
+      </tr>
+      <% @project.phases.each do |phase| %>
+        <tr>
+          <th>
+          <% if @project.current_stage_id == phase.id %>
+            [x]
+          <% else %>
+            [ ]
+          <% end %>
+          </th>
+          <th><%= phase.name %></th>
+          <th><%= phase.start_date.strftime("%d %B %Y") %></th>
+          <th><%= phase.end_date.strftime("%d %B %Y") %></th>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+      <p> No phases added yet</p>
+  <% end %>
+</div>
+
 <% if current_user %>
   <%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
 <% end %>
+
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <!-- <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> -->
