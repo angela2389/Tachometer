@@ -22,12 +22,14 @@
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
         <td><%= sprint.completed %></td>
-        <td><%= link_to 'Show', project_phase_spring_path(@project.id, @phase.id, spring) %></td>
-        <td><%= link_to 'Edit', edit_project_phase_spring_path(@project.id, @phase.id, spring) %></td>
-        <td><%= link_to 'Destroy', project_phase_spring_path(@project.id, @phase.id, spring), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_phase_sprint_path(project_id: @project.id, phase_id: @phase.id, id: sprint.id) %></td>
+        <td><%= link_to 'Edit', edit_project_phase_sprint_path(project_id: @project.id, phase_id: @phase.id, id: sprint.id) %></td>
+        <td><%= link_to 'Destroy', project_phase_sprint_path(project_id: @project.id, phase_id: @phase.id, id: sprint.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'New Sprint', new_project_phase_sprint_path(@project.id, @phase.id) %>

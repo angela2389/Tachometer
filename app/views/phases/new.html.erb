@@ -1,7 +1,5 @@
 <h1>New Phase</h1>
 
-<h3>Project: <em><%= @project.name %></em></h3>
-
-<%= render 'form', phase: @phase%>
+<%= render 'form'%>
 
 <%= link_to 'List', project_phases_path(@project.id) %>

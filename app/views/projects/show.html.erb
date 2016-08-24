@@ -16,39 +16,34 @@
 </p>
 
 <div class="phase_overview">
-  <% if @project.phases.length > 0 %>
-    <table class="phase_table">
-      <tr class="top_row">
-        <th>Current</th>
-        <th>Phase</th>
-        <th>Start date</th>
-        <th>End date</th>
+  <table class="phase_table">
+    <tr class="top_row">
+      <th>Current</th>
+      <th>Phase</th>
+      <th>Start date</th>
+      <th>End date</th>
+    </tr>
+    <% @project.phases.order(:sequence).each do |phase| %>
+      <tr>
+        <th>
+        <% if @project.current_stage_id == phase.id %>
+          [x]
+        <% else %>
+          [ ]
+        <% end %>
+        </th>
+        <th><%= link_to phase.name, project_phase_path(@project.id) %></th>
+        <th><%= phase.start_date.strftime("%d %B %Y") %></th>
+        <th><%= phase.end_date.strftime("%d %B %Y") %></th>
       </tr>
-      <% @project.phases.order(:sequence).each do |phase| %>
-        <tr>
-          <th>
-          <% if @project.current_stage_id == phase.id %>
-            [x]
-          <% else %>
-            [ ]
-          <% end %>
-          </th>
-          <th><%= link_to phase.name, project_phase_path(@project.id) %></th>
-          <th><%= phase.start_date.strftime("%d %B %Y") %></th>
-          <th><%= phase.end_date.strftime("%d %B %Y") %></th>
-        </tr>
-      <% end %>
-    </table>
-    <%= link_to('Create next phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success')  %>
-  <% else %>
-    <p> No phases added yet</p>
-    <%= link_to('Create first phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success')  %>
-  <% end %>
+    <% end %>
+  </table>
+  <%= link_to 'New phase', new_project_phase_path(@project.id) %>
 </div>
+
 
 <%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
 
-
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<!-- <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', projects_path %>

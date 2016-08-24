@@ -16,7 +16,12 @@ class PhasesController < ApplicationController
 
   # GET /phases/new
   def new
-    @phase = Phase.new(phase_params)
+    sequence = @project.phases.order(:sequence).last[:sequence]
+    if sequence == (Project::STAGES.length - 1)
+      redirect_to project_phases_path(@project.id), notice: 'New phase cannot be created'
+    else
+      @phase = Phase.new(sequence: sequence + 1)
+    end
   end
 
   # GET /phases/1/edit
@@ -75,8 +80,6 @@ class PhasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def phase_params
-      params.require(:phase).permit(:project_id, :start_date, :end_date, :interval,
-      :sequence, :long_term_vision, :kpi_s, :criteria, :bottlenecks, :problem_definition,
-      :solutions, :long_term, :key_benefits, :vision, :test_first, :proof_of_value, :background, :note)
+      params.require(:phase).permit(:project_id, :start_date, :end_date, :interval, :sequence, :long_term_vision, :kpi_s, :criteria, :bottlenecks, :problem_definition, :solutions, :long_term, :key_benefits, :vision, :test_first, :proof_of_value, :background, :note)
     end
 end
