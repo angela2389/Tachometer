@@ -15,7 +15,8 @@ class SprintsController < ApplicationController
 
   # GET /sprints/new
   def new
-    @sprint = Sprint.new
+    phase = Phase.find(params[:phase_id])
+    @sprint = phase.sprints.new
   end
 
   # GET /sprints/1/edit

@@ -122,7 +122,7 @@
     <%= link_to('Create new experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
   <% else %>
     <p> No experiments added yet</p>
-    <%= link_to('Create first experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Create first experiment', new_phase_in_project_path(@phase), :class => 'btn btn-large btn-success')  %>
   <% end %>
 </div>
 
