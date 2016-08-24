@@ -16,7 +16,22 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     project = Project.find(params[:id])
+
+# ---- def create_new_phase
+    if project.phases.map{|x| x[:sequence]}.length > 0
+      sequences = project.phases.map{|x| x[:sequence]}.sort
+      new_sequence = sequences[-1]
+      new_sequence += 1
+    else
+      # else as fallback, normally phase is always present after project creation
+      new_sequence = 0
+    end
+
     @phase = project.phases.new
+    @phase.sequence = new_sequence
+    # --- end
+
+# @phase = project.create_new_phase
   end
 
   # GET /phases/1/edit
