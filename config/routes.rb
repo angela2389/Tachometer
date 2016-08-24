@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
- 
   get 'projects/:id/phases/new' => 'phases#new', as: :new_phase_in_project
-
   resources :projects do
     resources :phases do
-      resources :experiments do
-	    resources :sprints
-	  end
+      resources :experiments
+      resources :spints
     end
   end
  
