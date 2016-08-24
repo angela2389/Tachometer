@@ -176,7 +176,7 @@ experiment1_1_1_A = Experiment.create(
 )
 
 experiment1_1_1_B = Experiment.create(
-  name: "Experiment lorem ipsum A",
+  name: "Experiment lorem ipsum B",
   start_date: Date.today - 2,
   end_date: Date.today + 1,
   completed: true,
@@ -212,7 +212,7 @@ experiment1_1_1_B = Experiment.create(
 )
 
 experiment1_1_1_C = Experiment.create(
-  name: "Experiment lorem ipsum A",
+  name: "Experiment lorem ipsum C",
   start_date: Date.today,
   end_date: Date.today + 5,
   completed: true,
