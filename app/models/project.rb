@@ -8,12 +8,12 @@ class Project < ApplicationRecord
     Phase.find(self.current_stage_id)
   end
 
-  def current_stage
-    self.phases.where(:completed => false).first
-  end
-
   def set_stage
-    self.current_stage_id = current_stage.id
+    if !earliest_uncompleted.nil?
+      self.update(current_stage_id:earliest_uncompleted.id)
+      else
+      self.update(current_stage_id:last_completed.id)
+    end
   end
 
   def get_mailer_for_current_phase
@@ -41,6 +41,16 @@ class Project < ApplicationRecord
       new_sequence = 0
     end
     new_sequence
+  end
+
+private
+
+  def earliest_uncompleted
+    self.phases.where(:completed => false).sort{ |a,b| a.sequence <=> b.sequence }.first
+  end
+
+  def last_completed
+    self.phases.where(:completed => true).sort{ |a,b| a.sequence <=> b.sequence }.last
   end
 
 end
