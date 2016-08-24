@@ -7,8 +7,10 @@ class Ability
     can :manage, :all
 
     if user.persisted? # in db, so logged in
+      can :manage, :all if user.role == "admin"
+
       # Can MANAGE (create, read, update, destroy, etc.) own Post
-      can :manage, :all if TeamMember.find_by(user_id: user.id).role == "Product Owner"
+      # can :manage, Project, user: user
       # can :manage, Phase, user: user
       # can :manage, Team, user: user
       # can :manage, Spring, user: user
