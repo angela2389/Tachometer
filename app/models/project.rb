@@ -9,12 +9,7 @@ class Project < ApplicationRecord
   end
 
   def current_stage
-    last_stage = self.phases.last
-    if last_stage[:start_date] >= Time.now
-      last_stage
-    else
-      self.phases[-2]
-    end
+    self.phases.where(:completed => false).first
   end
 
   def set_stage
