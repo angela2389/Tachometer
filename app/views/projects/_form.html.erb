@@ -31,7 +31,7 @@
     <%= f.fields_for :phases do |m| %>
    <div class="field form-group">
      <%= m.label 'Current phase' %><br>
-     <%= m.select :sequence, [['Explore', 1], ['Experiment', 2], ['Grow', 3], ['Scale', 4]]%>
+     <%= m.select :sequence, [[Project::STAGES[0], 0], [Project::STAGES[1], 1], [Project::STAGES[2], 2], [Project::STAGES[3], 3]]%>
    </div>
    <% end %>
 
