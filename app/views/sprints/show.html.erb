@@ -21,4 +21,4 @@
 </p>
 
 <%= link_to 'Edit', edit_project_phase_sprint_path(id: @sprint.id) %> |
-<%= link_to 'Back', sprints_path %>
+<%= link_to 'Back', project_phase_path(id: @sprint.phase.id)%>

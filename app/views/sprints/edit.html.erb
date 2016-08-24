@@ -3,4 +3,4 @@
 <%= render 'form', sprint: @sprint %>
 
 <%= link_to 'Show', @sprint %> |
-<%= link_to 'Back', sprints_path %>
+<%= link_to 'Back', project_phase_sprint_path(id: @sprint.id) %>
