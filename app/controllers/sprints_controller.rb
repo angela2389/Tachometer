@@ -4,6 +4,7 @@ class SprintsController < ApplicationController
   # GET /sprints
   # GET /sprints.json
   def index
+    phase = Phase.find(params[:phase_id])
     @sprints = Sprint.all
   end
 
@@ -24,11 +25,13 @@ class SprintsController < ApplicationController
   # POST /sprints
   # POST /sprints.json
   def create
-    @sprint = Sprint.new(sprint_params)
+    # project = Project.find(params[:project_id])
+    phase = Phase.find(params[:phase_id])
+    @sprint = phase.sprints.new(sprint_params)
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to @sprint, notice: 'Sprint was successfully created.' }
+        format.html { redirect_to project_phase_sprint_path(id: @sprint.id ), notice: 'Sprint was successfully created.' }
         format.json { render :show, status: :created, location: @sprint }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class SprintsController < ApplicationController
   def update
     respond_to do |format|
       if @sprint.update(sprint_params)
-        format.html { redirect_to @sprint, notice: 'Sprint was successfully updated.' }
+        format.html { redirect_to project_phase_sprint_path(id: @sprint.id ), notice: 'Sprint was successfully updated.' }
         format.json { render :show, status: :ok, location: @sprint }
       else
         format.html { render :edit }
@@ -64,7 +67,8 @@ class SprintsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sprint
-      @sprint = Sprint.find(params[:id])
+      phase = Phase.find(params[:phase_id])
+      @sprint = phase.sprints.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
