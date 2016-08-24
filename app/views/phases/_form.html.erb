@@ -1,307 +1,34 @@
-<%= form_for([@phase.project, @phase],:remote => true) do |f| %>
-<% if @phase.errors.any? %>
-<div id="error_explanation">
-    <h2><%= pluralize(@phase.errors.count, "error") %>
-        prohibited this phase from being saved:</h2>
+<%= form_for(phase) do |f| %>
+  <% if phase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(phase.errors.count, "error") %> prohibited this phase from being saved:</h2>
 
-    <ul>
-        <% @phase.errors.full_messages.each do |message| %>
+      <ul>
+      <% phase.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-        <% end %>
-    </ul>
-</div>
-<% end %>
-
-<div class="container">
-    <hr>
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    <h4 class="panel-title">
-                        <%= f.label :start_date %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <%= f.datetime_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    <h4 class="panel-title">
-                        <%= f.label :end_date %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.datetime_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                    <h4 class="panel-title">
-                        <%= f.label :interval %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>How many weeks will your sprint run?</p>
-                    <%= f.number_field :interval, class:"form-control", placeholder: "0" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                    <h4 class="panel-title">
-                        <%= f.label 'Phase' %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseFour" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.select :sequence, [[Project::STAGES[0], 0], [Project::STAGES[1], 1], [Project::STAGES[2], 2], [Project::STAGES[3], 3]], {}, class: "form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                    <h4 class="panel-title">
-                        <%= f.label :long_term_vision %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseFive" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :long_term_vision, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-                    <h4 class="panel-title">
-                        <%= f.label :kpi_s %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseSix" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :kpi_s, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
-                    <h4 class="panel-title">
-                        <%= f.label :criteria %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseSeven" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :criteria, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
-                    <h4 class="panel-title">
-                        <%= f.label :bottlenecks %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseEight" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :bottlenecks, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
-                    <h4 class="panel-title">
-                        <%= f.label :problem_definition %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseNine" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :problem_definition, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
-                    <h4 class="panel-title">
-                        <%= f.label :solutions %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseTen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :solutions, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">
-                    <h4 class="panel-title">
-                        <%= f.label :long_term %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseEleven" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :long_term, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">
-                    <h4 class="panel-title">
-                        <%= f.label :key_benefits %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseTwelve" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :key_benefits, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">
-                    <h4 class="panel-title">
-                        <%= f.label :vision %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseThirteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :vision, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">
-                    <h4 class="panel-title">
-                        <%= f.label :test_first %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseFourteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :test_first, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">
-                    <h4 class="panel-title">
-                        <%= f.label :proof_of_value %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseFifteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :proof_of_value, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
-                    <h4 class="panel-title">
-                        <%= f.label :background %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseSixteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :background, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">
-                    <h4 class="panel-title">
-                        <%= f.label :note %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseSeventeen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :note, class:"form-control" %>
-                </div>
-            </div>
-        </div>
+      <% end %>
+      </ul>
     </div>
-    <%= link_to "Back to Project", project_phase_path , :class => "btn btn-default" %>
-</div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :interval %>
+    <%= f.number_field :interval, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.hidden_field :completed, :value => FALSE %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
-
-<script>
-    // window.setInterval(function () {
-    //     $('#edit_phase_<%=@phase.id%>').submit(); // this will trigger the form to submit and save
-    // }, 5000);
-
-    // 5000 => Run the function every 5000 milliseconds
-
-
-    $('input, select, textarea').filter(function () {
-        return this.value;
-    }).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
-
-
-    // $('input, select, textarea').change(function () {
-    //     if ($('textarea').val().length >= 1) {
-    //         $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
-    //     }
-    // });
-
-    $('input, select, textarea').change(function () {
-        if ($(this).val() < 1 ) {
-            $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
-              $('#edit_phase_<%=@phase.id%>').submit();
-        }
-        else if ($(this).val().length >= 1) {
-            $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
-              $('#edit_phase_<%=@phase.id%>').submit();
-        }
-    });
-</script>

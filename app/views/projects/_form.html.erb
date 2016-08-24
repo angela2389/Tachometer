@@ -29,14 +29,14 @@
 
 
     <%= f.fields_for :phases do |m| %>
-   <div class="field form-group">
-     <%= m.label 'Current phase' %><br>
-     <%= m.select :sequence, [[Project::STAGES[0], 0], [Project::STAGES[1], 1], [Project::STAGES[2], 2], [Project::STAGES[3], 3]]%>
-   </div>
-   <% end %>
+     <div class="field form-group">
+       <%= m.label 'Current phase' %><br>
+       <%= m.select :sequence, Project.get_list_of_phases%>
+     </div>
+    <% end %>
 
     <div class="actions">
-      <%= f.submit "Create Project", class: "btn btn-default btn-primary" %>
+      <%= f.submit %>
     </div>
   <% end %>
 </div>

@@ -1,11 +1,12 @@
 class SprintsController < ApplicationController
+  before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :set_phase, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :set_sprint, only: [:show, :edit, :update, :destroy]
 
   # GET /sprints
   # GET /sprints.json
   def index
-    phase = Phase.find(params[:phase_id])
-    @sprints = Sprint.where(phase_id: phase)
+    @sprints = Sprint.where(phase_id: params[:phase_id])
   end
 
   # GET /sprints/1
@@ -25,13 +26,11 @@ class SprintsController < ApplicationController
   # POST /sprints
   # POST /sprints.json
   def create
-    # project = Project.find(params[:project_id])
-    phase = Phase.find(params[:phase_id])
-    @sprint = phase.sprints.new(sprint_params)
+    @sprint = Sprint.new(experiment_params)
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to project_phase_path(id: @sprint.phase.id ), notice: 'Sprint was successfully created.' }
+        format.html { redirect_to project_phase_sprint_path(@project.id, @phase.id, @sprint), notice: 'Sprint was successfully created.' }
         format.json { render :show, status: :created, location: @sprint }
       else
         format.html { render :new }
@@ -45,7 +44,7 @@ class SprintsController < ApplicationController
   def update
     respond_to do |format|
       if @sprint.update(sprint_params)
-        format.html { redirect_to project_phase_path(id: @sprint.phase.id ), notice: 'Sprint was successfully updated.' }
+        format.html { redirect_to project_phase_sprint_path(@project.id, @phase.id, @sprint), notice: 'Sprint was successfully updated.' }
         format.json { render :show, status: :ok, location: @sprint }
       else
         format.html { render :edit }
@@ -59,20 +58,25 @@ class SprintsController < ApplicationController
   def destroy
     @sprint.destroy
     respond_to do |format|
-      format.html { redirect_to sprints_url, notice: 'Sprint was successfully destroyed.' }
+      format.html { redirect_to project_phase_sprint_path(@project.id, @phase.id), notice: 'Sprint was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+    def set_phase
+      @phase = Phase.find(params[:phase_id])
+    end
     def set_sprint
-      phase = Phase.find(params[:phase_id])
-      @sprint = phase.sprints.find(params[:id])
+      @sprint = Sprint.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sprint_params
-      params.require(:sprint).permit(:name, :start_date, :end_date, :completed)
+      params.require(:sprint).permit(:name, :start_date, :end_date, :completed, :project_id, :phase_id)
     end
 end

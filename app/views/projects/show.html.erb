@@ -39,10 +39,10 @@
         </tr>
       <% end %>
     </table>
-    <%= link_to('Create next phase', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Create next phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success')  %>
   <% else %>
     <p> No phases added yet</p>
-    <%= link_to('Create first phase', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Create first phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success')  %>
   <% end %>
 </div>
 

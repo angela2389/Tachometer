@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><b>Project:</b> <em><%= @project.name %></em>
+
 <h1>
   <%= @phase.name %>
 </h1>
@@ -90,40 +92,36 @@
 </p>
 
 <div class="phase_overview">
-  <% if @phase.experiments.length > 0 %>
-    <table class="phase_table">
-      <tr class="top_row">
-        <th>Completed</th>
-        <th>Experiment</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Interviews completion</th>
-        <th>Early adopters conversion</th>
+  <table class="phase_table">
+    <tr class="top_row">
+      <th>Completed</th>
+      <th>Experiment</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Interviews completion</th>
+      <th>Early adopters conversion</th>
+    </tr>
+    <% @phase.experiments.order(:start_date).each do |experiment| %>
+      <tr>
+        <th>
+        <% if experiment.completed %>
+          [x]
+        <% else %>
+          [ ]
+        <% end %>
+        </th>
+        <th><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id) %></th>
+        <th><%= experiment.start_date.strftime("%d %B %Y") %></th>
+        <th><%= experiment.end_date.strftime("%d %B %Y") %></th>
+        <th><%= experiment.interviews_completion[:number] %>
+          (<%= number_to_percentage(experiment.interviews_completion[:ratio] * 100, options = {precision: 2}) %>)</th>
+        <th><%= experiment.early_adopters_conversion[:number] %>
+          (<%= number_to_percentage(experiment.early_adopters_conversion[:ratio] * 100, options = {precision: 2}) %>)</th>
       </tr>
-      <% @phase.experiments.order(:start_date).each do |experiment| %>
-        <tr>
-          <th>
-          <% if experiment.completed %>
-            [x]
-          <% else %>
-            [ ]
-          <% end %>
-          </th>
-          <th><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id) %></th>
-          <th><%= experiment.start_date.strftime("%d %B %Y") %></th>
-          <th><%= experiment.end_date.strftime("%d %B %Y") %></th>
-          <th><%= experiment.interviews_completion[:number] %>
-            (<%= number_to_percentage(experiment.interviews_completion[:ratio] * 100, options = {precision: 2}) %>)</th>
-          <th><%= experiment.early_adopters_conversion[:number] %>
-            (<%= number_to_percentage(experiment.early_adopters_conversion[:ratio] * 100, options = {precision: 2}) %>)</th>
-        </tr>
-      <% end %>
-    </table>
-    <%= link_to('Create new experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
-  <% else %>
-    <p> No experiments added yet</p>
-    <%= link_to('Create first experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
-  <% end %>
+    <% end %>
+  </table>
+  <br>
+  <%= link_to('Create new experiment', new_project_phase_experiment_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
 </div>
 
 <hr>

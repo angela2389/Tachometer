@@ -5,6 +5,14 @@ class Project < ApplicationRecord
 
   STAGES = ['Explore', 'Experiment', 'Grow', 'Scale']
 
+  def self.get_list_of_phases
+    list_of_phases = []
+    STAGES.each_with_index do |stage, index|
+      list_of_phases << [stage, index]
+    end
+    list_of_phases
+  end
+
   def current_phase
     Phase.find(self.current_stage_id)
   end
@@ -18,7 +26,6 @@ class Project < ApplicationRecord
   end
 
   def get_mailer_for_current_phase
-    byebug
     current_phase = Phase.find(self.current_stage_id)
     users = current_phase.team.users
     sprints = []
@@ -32,16 +39,27 @@ class Project < ApplicationRecord
   end
 
   def define_next_sequence
+    # existing_sequences = self.phases.map{|x| x[:sequence]}
+    # if existing_sequences.length > 0
+    #   existing_sequences = existing_sequences.sort
+    #   new_sequence = existing_sequences[-1]
+    #   new_sequence += 1
+    # else
+    #   # else as fallback, normally phase is always present after project creation
+    #   new_sequence = 0
+    # end
+    # new_sequence
+
     existing_sequences = self.phases.map{|x| x[:sequence]}
-    if existing_sequences.length > 0
-      existing_sequences = existing_sequences.sort
-      new_sequence = existing_sequences[-1]
-      new_sequence += 1
+    highest_sequence = existing_sequences.max
+    if existing_sequences.empty?
+      0
+    elsif highest_sequence >= STAGES.length - 1
+      nil
     else
-      # else as fallback, normally phase is always present after project creation
-      new_sequence = 0
+      highest_sequence + 1
     end
-    new_sequence
+
   end
 
 private
