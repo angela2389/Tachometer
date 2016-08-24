@@ -22,4 +22,17 @@ class Project < ApplicationRecord
     {users: users, sprints:sprints}
   end
 
+  def define_next_sequence
+    existing_sequences = self.phases.map{|x| x[:sequence]}
+    if existing_sequences.length > 0
+      existing_sequences = existing_sequences.sort
+      new_sequence = existing_sequences[-1]
+      new_sequence += 1
+    else
+      # else as fallback, normally phase is always present after project creation
+      new_sequence = 0
+    end
+    new_sequence
+  end
+
 end
