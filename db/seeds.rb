@@ -9,12 +9,12 @@ User.delete_all
 
 # Users
 
-user1 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
-user2 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
-user3 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
-user4 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
-user5 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
-user6 = User.create( email: 'tachometero7@gmail.com', password: 'abcd1234' )
+user1 = User.create( email: 'tachometero1@gmail.com', password: 'abcd1234' )
+user2 = User.create( email: 'tachometero2@gmail.com', password: 'abcd1234' )
+user3 = User.create( email: 'tachometero3@gmail.com', password: 'abcd1234' )
+user4 = User.create( email: 'tachometero4@gmail.com', password: 'abcd1234' )
+user5 = User.create( email: 'tachometero5@gmail.com', password: 'abcd1234' )
+user6 = User.create( email: 'tachometero6@gmail.com', password: 'abcd1234' )
 
 # Experiments
 
@@ -26,6 +26,7 @@ project1 = Project.create(
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
+  user: user1,
   # current_stage_id: phase1_1.id
 )
 project2 = Project.create(
@@ -34,6 +35,7 @@ project2 = Project.create(
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
+  user: user2,
   # current_stage_id: phase2_1.id
 )
 
@@ -42,7 +44,8 @@ project3 = Project.create(
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
-  active: false
+  active: false,
+  user: user3,
 )
 
 # Phases (project/phase)
