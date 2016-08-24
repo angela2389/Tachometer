@@ -98,7 +98,7 @@
         <th>Start date</th>
         <th>End date</th>
       </tr>
-      <% @phase.experiments.each do |experiment| %>
+      <% @phase.experiments.order(:start_date).each do |experiment| %>
         <tr>
           <th>
           <% if experiment.completed %>
