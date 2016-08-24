@@ -8,7 +8,7 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Interval</th>
-      <th>Sequence</th>
+      <th>Phase</th>
       <th>Long term vision</th>
       <th>Kpi s</th>
       <th>Criteria</th>
@@ -31,8 +31,8 @@
       <tr>
         <td><%= phase.start_date %></td>
         <td><%= phase.end_date %></td>
-        <td><%= phase.interval %></td>
-        <td><%= phase.sequence %></td>
+        <td><%= phase.interval %> weeks</td>
+        <td><%= Project::STAGES[phase.sequence] %></td>
         <td><%= phase.long_term_vision %></td>
         <td><%= phase.kpi_s %></td>
         <td><%= phase.criteria %></td>

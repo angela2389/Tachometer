@@ -5,7 +5,7 @@ class SprintsController < ApplicationController
   # GET /sprints.json
   def index
     phase = Phase.find(params[:phase_id])
-    @sprints = Sprint.all
+    @sprints = Sprint.where(phase_id: phase)
   end
 
   # GET /sprints/1
