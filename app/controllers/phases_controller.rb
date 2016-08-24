@@ -15,7 +15,7 @@ class PhasesController < ApplicationController
 
   # GET /phases/new
   def new
-    project = Project.find(params[:project_id])
+    project = Project.find(params[:id])
     @phase = project.phases.new
   end
 

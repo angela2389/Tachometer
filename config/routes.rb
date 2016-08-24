@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :sprints
   resources :experiments
+  get 'projects/:id/phases/new' => 'phases#new', as: :new_phase_in_project
   resources :projects do
   resources :phases
 end
