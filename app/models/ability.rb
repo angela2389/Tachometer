@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     # Can READ anything
-    can :read, :all
+    can :manage, :all
 
     if user.persisted? # in db, so logged in
       can :manage, :all if user.role == "admin"
