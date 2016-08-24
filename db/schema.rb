@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824090203) do
+ActiveRecord::Schema.define(version: 20160824082148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,23 @@ ActiveRecord::Schema.define(version: 20160824090203) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "completed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "phase_id"
     t.integer  "sprint_id"
     t.integer  "team_id"
+    t.string   "domain"
+    t.text     "assumption"
+    t.text     "method"
+    t.text     "observation"
+    t.text     "measure"
+    t.text     "learned"
+    t.text     "success_criteria"
+    t.text     "action"
+    t.integer  "interviews_planned"
+    t.integer  "interviews_done"
+    t.integer  "early_adopters_planned"
+    t.integer  "early_adopters_converted"
     t.index ["phase_id"], name: "index_experiments_on_phase_id", using: :btree
     t.index ["sprint_id"], name: "index_experiments_on_sprint_id", using: :btree
     t.index ["team_id"], name: "index_experiments_on_team_id", using: :btree
