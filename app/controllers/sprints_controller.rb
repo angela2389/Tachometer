@@ -31,7 +31,7 @@ class SprintsController < ApplicationController
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to project_phase_sprint_path(id: @sprint.id ), notice: 'Sprint was successfully created.' }
+        format.html { redirect_to project_phase_path(id: @sprint.phase.id ), notice: 'Sprint was successfully created.' }
         format.json { render :show, status: :created, location: @sprint }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class SprintsController < ApplicationController
   def update
     respond_to do |format|
       if @sprint.update(sprint_params)
-        format.html { redirect_to project_phase_sprint_path(id: @sprint.id ), notice: 'Sprint was successfully updated.' }
+        format.html { redirect_to project_phase_path(id: @sprint.phase.id ), notice: 'Sprint was successfully updated.' }
         format.json { render :show, status: :ok, location: @sprint }
       else
         format.html { render :edit }
