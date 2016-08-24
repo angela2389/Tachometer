@@ -8,6 +8,19 @@ class Project < ApplicationRecord
     Phase.find(self.current_stage_id)
   end
 
+  def current_stage
+    last_stage = self.phases.last
+    if last_stage[:start_date] >= Time.now
+      last_stage
+    else
+      self.phases[-2]
+    end
+  end
+
+  def set_stage
+    self.current_stage_id = current_stage.id
+  end
+
   def get_mailer_for_current_phase
     project = Project.find(self.id)
     current_phase = Phase.find(project.current_stage_id)
