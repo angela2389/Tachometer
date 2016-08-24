@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   has_many :phases, inverse_of: :project
+  belongs_to :user
   accepts_nested_attributes_for :phases, allow_destroy: true, :reject_if => :all_blank
 
   STAGES = ['Explore', 'Experiment', 'Grow', 'Scale']
