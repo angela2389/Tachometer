@@ -16,7 +16,9 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     project = Project.find(params[:id])
+    next_sequence = project.define_next_sequence
     @phase = project.phases.new
+    @phase.sequence = next_sequence
   end
 
   # GET /phases/1/edit

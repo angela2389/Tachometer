@@ -7,4 +7,8 @@ class Phase < ApplicationRecord
     Project::STAGES[self.sequence]
   end
 
+  def define_next_phase
+
+
+  end
 end
