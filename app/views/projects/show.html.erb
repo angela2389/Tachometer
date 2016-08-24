@@ -46,9 +46,7 @@
   <% end %>
 </div>
 
-<% if current_user %>
-  <%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
-<% end %>
+<%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
