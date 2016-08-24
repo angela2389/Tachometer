@@ -20,5 +20,27 @@
   <%= @experiment.completed %>
 </p>
 
-<%= link_to 'Edit', edit_experiment_path(@experiment) %> |
-<%= link_to 'Back', experiments_path %>
+<br>
+<p>
+  <strong>Interviews planned:</strong>
+  <%= @experiment.interviews_planned %>
+</p>
+
+<p>
+  <strong>Interviews done:</strong>
+  <%= @experiment.interviews_done %>
+</p>
+
+<br>
+<p>
+  <strong>Early adopters planned:</strong>
+  <%= @experiment.early_adopters_planned %>
+</p>
+<p>
+  <strong>Early adopters converted:</strong>
+  <%= @experiment.early_adopters_converted %>
+</p>
+
+<hr>
+<%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id) %> |
+<%= link_to 'Back', project_phase_experiment_path(@project.id, @phase.id) %>

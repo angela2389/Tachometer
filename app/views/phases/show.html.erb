@@ -107,7 +107,7 @@
             [ ]
           <% end %>
           </th>
-          <th><%= link_to experiment.name %></th>
+          <th><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id) %></th>
           <th><%= experiment.start_date.strftime("%d %B %Y") %></th>
           <th><%= experiment.end_date.strftime("%d %B %Y") %></th>
         </tr>
