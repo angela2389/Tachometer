@@ -276,9 +276,9 @@
 <% end %>
 
 <script>
-    window.setInterval(function () {
-        $('#edit_phase_<%=@phase.id%>').submit(); // this will trigger the form to submit and save
-    }, 5000);
+    // window.setInterval(function () {
+    //     $('#edit_phase_<%=@phase.id%>').submit(); // this will trigger the form to submit and save
+    // }, 5000);
 
     // 5000 => Run the function every 5000 milliseconds
 
@@ -297,9 +297,11 @@
     $('input, select, textarea').change(function () {
         if ($(this).val() < 1 ) {
             $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
+              $('#edit_phase_<%=@phase.id%>').submit();
         }
         else if ($(this).val().length >= 1) {
             $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
+              $('#edit_phase_<%=@phase.id%>').submit();
         }
     });
 </script>
