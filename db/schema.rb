@@ -20,12 +20,26 @@ ActiveRecord::Schema.define(version: 20160824090203) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "completed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "phase_id"
     t.integer  "sprint_id"
+    t.integer  "team_id"
+    t.string   "domain"
+    t.text     "assumption"
+    t.text     "method"
+    t.text     "observation"
+    t.text     "measure"
+    t.text     "learned"
+    t.text     "success_criteria"
+    t.text     "action"
+    t.integer  "interviews_planned"
+    t.integer  "interviews_done"
+    t.integer  "early_adopters_planned"
+    t.integer  "early_adopters_converted"
     t.index ["phase_id"], name: "index_experiments_on_phase_id", using: :btree
     t.index ["sprint_id"], name: "index_experiments_on_sprint_id", using: :btree
+    t.index ["team_id"], name: "index_experiments_on_team_id", using: :btree
   end
 
   create_table "phases", force: :cascade do |t|
@@ -109,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160824090203) do
 
   add_foreign_key "experiments", "phases"
   add_foreign_key "experiments", "sprints"
+  add_foreign_key "experiments", "teams"
   add_foreign_key "phases", "projects"
   add_foreign_key "sprints", "phases"
   add_foreign_key "team_members", "teams"
