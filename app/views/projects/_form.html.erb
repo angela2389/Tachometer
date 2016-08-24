@@ -23,11 +23,15 @@
       <%= f.text_area :description, class:"form-control"%>
     </div>
 
+    <div class="field form-group">
+      <%= f.hidden_field :active, :value => TRUE %>
+    </div>
+
 
     <%= f.fields_for :phases do |m| %>
    <div class="field form-group">
-     <%= m.label :sequence %><br>
-     <%= m.number_field :sequence %>
+     <%= m.label 'Current phase' %><br>
+     <%= m.select :sequence, [['Explore', 1], ['Experiment', 2], ['Grow', 3], ['Scale', 4]]%>
    </div>
    <% end %>
 
