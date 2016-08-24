@@ -63,10 +63,10 @@ project5 = Project.create(
 
 # Phases (project/phase)
 
-phase1_1 = Phase.create( sequence: 0, interval: 1, project: project1 )
-phase1_2 = Phase.create( sequence: 1, interval: 1, project: project1 )
-phase1_3 = Phase.create( sequence: 2, interval: 1, project: project1 )
-phase1_4 = Phase.create( sequence: 3, interval: 1, project: project1 )
+phase1_1 = Phase.create( start_date: "2016-08-15", end_date: "2016-09-15", sequence: 0, interval: 1, project: project1 )
+phase1_2 = Phase.create( start_date: "2016-09-16", end_date: "2016-10-15", sequence: 1, interval: 1, project: project1 )
+phase1_3 = Phase.create( start_date: "2016-10-16", end_date: "2016-10-23", sequence: 2, interval: 1, project: project1 )
+phase1_4 = Phase.create( start_date: "2016-10-24", end_date: "2016-10-31", sequence: 3, interval: 1, project: project1 )
 
 phase2_1 = Phase.create( sequence: 0, interval: 1, project: project2 )
 
