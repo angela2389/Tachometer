@@ -71,7 +71,7 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <%= f.number_field :sequence, class:"form-control" %>
+                    <%= f.select :sequence, [[Project::STAGES[0], 0], [Project::STAGES[1], 1], [Project::STAGES[2], 2], [Project::STAGES[3], 3]], {}, class: "form-control" %>
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@
             </div>
         </div>
     </div>
-    <%= link_to "Back to Project", project_phase_path , :class => "btn btn-info darkblue" %>
+    <%= link_to "Back to Project", project_phase_path , :class => "btn btn-default" %>
 </div>
 <% end %>
 
@@ -282,19 +282,21 @@
 
     // 5000 => Run the function every 5000 milliseconds
 
-    //
-    // $('#edit_phase_<%=@phase.id%> text_area').blur(function() {     if( $(this).val().length === 0 ) {         $(this).parents('panel').addClass('completed');     } });
 
-    $('textarea').filter(function () {
+    $('input, select, textarea').filter(function () {
         return this.value;
     }).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
 
-    $('textarea').change(function () {
-        if ($('textarea').val().length < 1) {
-            $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
 
-        } else {
-            console.log("no change")
+    $('input, select, textarea').change(function () {
+        if ($('textarea').val().length >= 1) {
+            $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
+        }
+    });
+
+    $('input, select, textarea').change(function () {
+        if ($('textarea').val() == "") {
+            $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
         }
     });
 </script>
