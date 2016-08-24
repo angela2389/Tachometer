@@ -45,22 +45,6 @@ project3 = Project.create(
   active: false
 )
 
-project4 = Project.create(
-  name: "project ipsum 4",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
-  active: false
-)
-
-project5 = Project.create(
-  name: "project ipsum 5",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-  Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
-  active: true
-)
-
 # Phases (project/phase)
 
 phase1_1 = Phase.create(
@@ -112,13 +96,20 @@ phase2_2 = Phase.create(
   project: project2
   )
 
-# Add cuurent_stage_id
+phase3_1 = Phase.create(
+  start_date: Date.today - 60,
+  end_date: Date.today + 30,
+  completed: true,
+  sequence: 0,
+  interval: 1,
+  project: project3
+  )
 
-project1.current_stage_id = phase1_1.id
-project1.save
+# Add current_stage_id
 
-project2.current_stage_id = phase2_2.id
-project2.save
+project1.current_stage_id = phase1_1.id; project1.save
+project2.current_stage_id = phase2_2.id; project2.save
+project3.current_stage_id = phase3_1.id; project3.save
 
 # Sprints (project/phase/sprint)
 sprint1_1_1 = Sprint.create(

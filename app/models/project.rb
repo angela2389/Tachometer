@@ -22,8 +22,8 @@ class Project < ApplicationRecord
   end
 
   def get_mailer_for_current_phase
-    project = Project.find(self.id)
-    current_phase = Phase.find(project.current_stage_id)
+    byebug
+    current_phase = Phase.find(self.current_stage_id)
     users = current_phase.team.users
     sprints = []
     current_phase.sprints.each do |sprint|
