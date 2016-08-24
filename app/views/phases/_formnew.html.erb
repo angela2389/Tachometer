@@ -278,15 +278,26 @@
 <% end %>
 
 <script>
+
+
 $('input, select, textarea').change(function () {
-    if ($('textarea').val().length >= 1) {
+    if ($(this).val() < 1 ) {
+        $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
+    }
+    else if ($(this).val().length >= 1) {
         $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
     }
 });
 
-$('input, select, textarea').change(function () {
-    if ($('textarea').val() == "") {
-        $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
-    }
-});
+// $('input, select, textarea').change(function () {
+//   if ($('textarea').val() == "") {
+//       $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
+//   }
+//
+// });
+
+
+
+
+
 </script>
