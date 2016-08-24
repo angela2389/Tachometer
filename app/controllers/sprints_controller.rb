@@ -4,6 +4,7 @@ class SprintsController < ApplicationController
   # GET /sprints
   # GET /sprints.json
   def index
+    phase = Phase.find(params[:phase_id])
     @sprints = Sprint.all
   end
 
@@ -14,6 +15,7 @@ class SprintsController < ApplicationController
 
   # GET /sprints/new
   def new
+    phase = Phase.find(params[:phase_id])
     @sprint = Sprint.new
   end
 
@@ -24,7 +26,8 @@ class SprintsController < ApplicationController
   # POST /sprints
   # POST /sprints.json
   def create
-    @sprint = Sprint.new(sprint_params)
+    phase = Phase.find(params[:phase_id])
+    @sprint = phase.sprints.new(sprint_params)
 
     respond_to do |format|
       if @sprint.save
