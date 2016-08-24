@@ -23,10 +23,13 @@
       <%= f.text_area :description, class:"form-control"%>
     </div>
 
-    <div class="field form-group">
-      <%= f.label :active %>
-      <%= f.check_box :active, {:checked=>true}, class:"form-control" %>
-    </div>
+
+    <%= f.fields_for :phases do |m| %>
+   <div class="field form-group">
+     <%= m.label :sequence %><br>
+     <%= m.number_field :sequence %>
+   </div>
+   <% end %>
 
     <div class="actions">
       <%= f.submit "Create Project", class: "btn btn-default btn-primary" %>
