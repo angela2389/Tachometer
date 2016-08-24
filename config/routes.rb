@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :experiments
   get 'projects/:id/phases/new' => 'phases#new', as: :new_phase_in_project
   get 'projects/:project_id/phases/:phase_id/sprints/new' => 'sprints#new', as: :new_sprint_in_phase
+  get 'projects/:project_id/phases/:phase_id/sprints/' => 'sprints#index', as: :sprints
+  get 'projects/:project_id/phases/:phase_id/sprints/:id/edit' => 'sprints#edit', as: :edit_sprint
+  get 'projects/:project_id/phases/:phase_id/sprints/:id' => 'sprints#show', as: :sprint
+
+
   resources :projects do
     resources :phases do
       resources :sprints
