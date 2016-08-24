@@ -25,7 +25,7 @@
     <%= link_to('Create first strint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
   <% end %>
 </div>
-<h2>Sprints in <%= @phase.name %></h2>
+<h2>Scoping for <%= @phase.name %></h2>
 <p>
   <strong>Start date:</strong>
   <%= @phase.start_date %>
