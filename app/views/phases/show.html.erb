@@ -19,10 +19,10 @@
         </tr>
       <% end %>
     </table>
-    <%= link_to('Create new strint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Create new sprint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
   <% else %>
     <p> No sprints added yet</p>
-    <%= link_to('Create first strint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Create first sprint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
   <% end %>
 </div>
 <h2>Scoping for <%= @phase.name %></h2>
