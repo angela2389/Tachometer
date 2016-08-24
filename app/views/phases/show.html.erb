@@ -1,31 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<div class="phase_overview">
-  <h2>Sprints in <%= @phase.name %></h2>
-  <% if @phase.sprints.length > 0 %>
-    <table class="phase_table">
-      <tr class="top_row">
-        <th>ID</th>
-        <th>Phase</th>
-        <th>Start date</th>
-        <th>End date</th>
-      </tr>
-      <% @phase.sprints.order(:id).each do |sprint| %>
-        <tr>
-          <th><%= sprint.id %></th>
-          <th><%= link_to sprint.name, project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id, id: sprint.id ) %></th>
-          <th><%= sprint.start_date.strftime("%d %B %Y") %></th>
-          <th><%= sprint.end_date.strftime("%d %B %Y") %></th>
-        </tr>
-      <% end %>
-    </table>
-    <%= link_to('Create new sprint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
-  <% else %>
-    <p> No sprints added yet</p>
-    <%= link_to('Create first sprint', new_project_phase_sprint_path(project_id: @phase.project.id, phase_id: @phase.id), :class => 'btn btn-large btn-success')  %>
-  <% end %>
-</div>
-<h2>Scoping for <%= @phase.name %></h2>
+<h1>
+  <%= @phase.name %>
+</h1>
+
 <p>
   <strong>Start date:</strong>
   <%= @phase.start_date %>
@@ -38,12 +16,12 @@
 
 <p>
   <strong>Interval:</strong>
-  <%= @phase.interval %> weeks
+  <%= @phase.interval %>
 </p>
 
 <p>
-  <strong>Phase:</strong>
-  <%= Project::STAGES[@phase.sequence] %>
+  <strong>Sequence:</strong>
+  <%= @phase.sequence %>
 </p>
 
 <p>
@@ -110,6 +88,45 @@
   <strong>Note:</strong>
   <%= @phase.note %>
 </p>
+
+<div class="phase_overview">
+  <% if @phase.experiments.length > 0 %>
+    <table class="phase_table">
+      <tr class="top_row">
+        <th>Completed</th>
+        <th>Experiment</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Interviews completion</th>
+        <th>Early adopters conversion</th>
+      </tr>
+      <% @phase.experiments.order(:start_date).each do |experiment| %>
+        <tr>
+          <th>
+          <% if experiment.completed %>
+            [x]
+          <% else %>
+            [ ]
+          <% end %>
+          </th>
+          <th><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id) %></th>
+          <th><%= experiment.start_date.strftime("%d %B %Y") %></th>
+          <th><%= experiment.end_date.strftime("%d %B %Y") %></th>
+          <th><%= experiment.interviews_completion[:number] %>
+            (<%= number_to_percentage(experiment.interviews_completion[:ratio] * 100, options = {precision: 2}) %>)</th>
+          <th><%= experiment.early_adopters_conversion[:number] %>
+            (<%= number_to_percentage(experiment.early_adopters_conversion[:ratio] * 100, options = {precision: 2}) %>)</th>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to('Create new experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
+  <% else %>
+    <p> No experiments added yet</p>
+    <%= link_to('Create first experiment', new_phase_in_project_path, :class => 'btn btn-large btn-success')  %>
+  <% end %>
+</div>
+
+<hr>
 
 <%= link_to 'Edit', edit_project_phase_path(@phase.project, @phase) %> |
 <%= link_to 'Back', project_phases_path(@phase.project) %>

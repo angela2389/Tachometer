@@ -64,6 +64,8 @@ class ExperimentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_experiment
+      @project = Project.find(params[:project_id])
+      @phase = @project.phases.find(params[:phase_id])
       @experiment = Experiment.find(params[:id])
     end
 
