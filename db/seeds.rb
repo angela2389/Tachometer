@@ -91,7 +91,7 @@ phase2_2 = Phase.create(
   start_date: Date.today,
   end_date: Date.today + 30,
   completed: false,
-  sequence: 0,
+  sequence: 1,
   interval: 1,
   project: project2
   )
