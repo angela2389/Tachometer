@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  has_many :teams, through: :phases
+  has_many :team_members, through: :teams
   has_many :phases, inverse_of: :project
   belongs_to :user
   accepts_nested_attributes_for :phases, allow_destroy: true, :reject_if => :all_blank

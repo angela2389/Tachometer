@@ -3,7 +3,7 @@ class Phase < ApplicationRecord
   has_one :team
   has_many :sprints
   has_many :experiments
-
+  after_create :give_team
   after_save do
     # byebug
     # number_of_phases = self.project.phases.length
@@ -24,5 +24,9 @@ class Phase < ApplicationRecord
   def name
     Project::STAGES[self.sequence]
   end
-
+  def give_team
+    self.create_team
+    manager = self.project.user
+    self.team.team_members.create(user:manager,role:Team::ROLES[0])
+  end
 end

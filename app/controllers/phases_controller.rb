@@ -12,6 +12,7 @@ class PhasesController < ApplicationController
   # GET /phases/1
   # GET /phases/1.json
   def show
+    @team = @phase.team
   end
 
   # GET /phases/new
