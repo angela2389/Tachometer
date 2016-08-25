@@ -1,10 +1,10 @@
 # Delete all resources (in inverse order of appearence please!)
+Sprint.delete_all
+Experiment.delete_all
 TeamMember.delete_all
 Team.delete_all
-Sprint.delete_all
 Phase.delete_all
 Project.delete_all
-Experiment.delete_all
 User.delete_all
 
 # Users
@@ -114,19 +114,7 @@ project1.current_stage_id = phase1_1.id; project1.save
 project2.current_stage_id = phase2_2.id; project2.save
 project3.current_stage_id = phase3_1.id; project3.save
 
-# Sprints (project/phase/sprint)
-sprint1_1_1 = Sprint.create(
-  start_date: Date.today - 2,
-  end_date: Date.today + 5,
-  completed: false,
-  phase: phase1_1
-)
-sprint1_1_2 = Sprint.create(
-  start_date: Date.today + 6,
-  end_date: Date.today + 13,
-  completed: false,
-  phase: phase1_1
-)
+
 
 # Teams (project/phase/team)
 
@@ -145,7 +133,6 @@ experiment1_1_1_A = Experiment.create(
   end_date: Date.today,
   completed: true,
   phase: phase1_1,
-  sprint: sprint1_1_1,
   team: team1_1_1,
   interviews_planned: 10,
   interviews_done: 11,
@@ -181,7 +168,6 @@ experiment1_1_1_B = Experiment.create(
   end_date: Date.today + 1,
   completed: false,
   phase: phase1_1,
-  sprint: sprint1_1_1,
   team: team1_1_1,
   interviews_planned: 20,
   interviews_done: 30,
@@ -217,7 +203,6 @@ experiment1_1_1_C = Experiment.create(
   end_date: Date.today + 5,
   completed: false,
   phase: phase1_1,
-  sprint: sprint1_1_1,
   team: team1_1_1,
   interviews_planned: 10,
   interviews_done: 9,
@@ -245,4 +230,17 @@ experiment1_1_1_C = Experiment.create(
   action: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum."
+)
+# Sprints (project/phase/sprint)
+sprint1_1_1 = Sprint.create(
+  start_date: Date.today - 2,
+  end_date: Date.today + 5,
+  completed: false,
+  phase: phase1_1
+)
+sprint1_1_2 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase1_1
 )
