@@ -5,7 +5,11 @@ table {
   width: 80vw;
 }
 
-tr.border_top td {
+.border_top {
   border-top:1pt solid black;
-  padding: 10px 0px;
+  padding-top: 5vh;
+}
+
+.addmember {
+  display: inline-block;
 }
