@@ -1,7 +1,7 @@
 class SprintsController < ApplicationController
-  before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
-  before_action :set_phase, only: [:index, :show, :new, :edit, :create, :update, :destroy]
-  before_action :set_sprint, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:index, :show, :new, :edit, :create, :finalize, :update, :destroy]
+  before_action :set_phase, only: [:index, :show, :new, :edit, :create, :finalize, :update, :destroy]
+  before_action :set_sprint, only: [:show, :edit, :finalize, :update, :destroy]
 
   # GET /sprints
   # GET /sprints.json
@@ -80,6 +80,6 @@ class SprintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sprint_params
-      params.require(:sprint).permit(:name, :start_date, :end_date, :completed, :project_id, :phase_id, :est_points, :things_done, :things_learned, :act_points, :impediment, :retro_actions, :avg_happy, :on_target, :organization_helping, :able_to_pull_of, :impediment, experiment_ids:[])
+      params.require(:sprint).permit(:name, :start_date, :end_date, :completed, :project_id, :phase_id, :est_points, :things_done, :things_learned, :act_points, :impediment, :retro_actions, :avg_happy, :on_target, :organization_helping, :able_to_pull_of, :impediment, experiment_ids:[], experiments_attributes: [:id, :interviews_done])
     end
 end

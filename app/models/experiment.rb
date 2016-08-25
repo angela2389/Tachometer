@@ -1,13 +1,13 @@
 class Experiment < ApplicationRecord
   belongs_to :phase
-  has_and_belongs_to_many :sprint
+  has_and_belongs_to_many :sprints
   belongs_to :team
   has_many :steps
 
   before_save :add_default_values
 
   def interviews_completion
-    number = self.interviews_done 
+    number = self.interviews_done
     ratio = number.to_f / ( self.interviews_planned != 0 ? self.interviews_planned : 1 )
     {number: number, ratio: ratio}
   end
