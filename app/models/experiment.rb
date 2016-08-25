@@ -1,6 +1,6 @@
 class Experiment < ApplicationRecord
   belongs_to :phase
-  belongs_to :sprint
+  has_and_belongs_to_many :sprint
   belongs_to :team
 
   def interviews_completion

@@ -1,4 +1,4 @@
 class Sprint < ApplicationRecord
   belongs_to :phase
-  has_many :experiments
+  has_and_belongs_to_many :experiments
 end
