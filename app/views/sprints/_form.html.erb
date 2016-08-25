@@ -13,6 +13,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label "Select the relevant experiments for this sprint:" %>
+    <%= f.collection_check_boxes :experiment_ids, @phase.experiments.all, :id, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
