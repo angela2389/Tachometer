@@ -92,3 +92,13 @@
 .completed a {
   color: #3C763D;
 }
+
+progress {
+  min-width: 50px;
+  max-width: 250px;
+}
+
+.boxes {
+  color: #000;
+  padding-left: 1em;
+}
