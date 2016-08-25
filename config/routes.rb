@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
-
+  resources :users
   get '/projects/:project_id/phases/:phase_id/sprints/:id/finalize' => 'sprints#finalize', as: :sprint_finalize
 
   resources :projects do
