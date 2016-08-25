@@ -1,7 +1,7 @@
 
 <h3>Project: <em><%= @project.name %></em> - Phase: <em><%= @phase.name %></em></h3>
 
-<%= form_for([@project, @phase]) do |f| %>
+<%= form_for([@project, @phase],:remote => true) do |f| %>
 
   <% if @phase.errors.any? %>
     <div id="error_explanation">
@@ -279,23 +279,26 @@
     <%= f.hidden_field :project_id, value: @project.id %>
     <%= f.hidden_field :sequence, value: @phase.sequence %>
 
-    <div class="actions">
-      <%= f.submit "Create Phase", class: "btn-primary"%>
-    </div>
+    <%= link_to "Back to Project", project_phase_path , :class => "btn btn-default" %>
 </div>
 <% end %>
 
 <script>
 
+    $('input, select, textarea').filter(function () {
+        return this.value;
+    }).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
 
-$('input, select, textarea').change(function () {
-    if ($(this).val() < 1 ) {
-        $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
-    }
-    else if ($(this).val().length >= 1) {
-        $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
-    }
-});
 
+    $('input, select, textarea').change(function () {
+        if ($(this).val() < 1 ) {
+            $(this).parentsUntil(".panel-default").siblings(".panel-heading").removeClass('completed');
+              $('#edit_phase_<%=@phase.id%>').submit();
+        }
+        else if ($(this).val().length >= 1) {
+            $(this).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
+              $('#edit_phase_<%=@phase.id%>').submit();
+        }
+    });
 
 </script>
