@@ -2,6 +2,7 @@ class Experiment < ApplicationRecord
   belongs_to :phase
   has_and_belongs_to_many :sprint
   belongs_to :team
+  has_many :steps
 
   before_save :add_default_values
 
