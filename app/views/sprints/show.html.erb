@@ -19,7 +19,42 @@
 
 <p>
   <strong>Completed:</strong>
-  <%= @sprint.completed %>
+  <%= @sprint.completed == false ? 'Not yet' : 'Done'%>
+</p>
+
+<p>
+  <strong>Estimated sprint points:</strong>
+  <%= @sprint.est_points %>
+</p>
+
+<p>
+  <strong>Average happy score:</strong>
+  <%= @sprint.avg_happy %>
+</p>
+
+<p>
+  <strong>What actions came out of the retrospective?</strong>
+  <%= @sprint.retro_actions %>
+</p>
+
+<p>
+  <strong>Are you on target?</strong>
+  <%= @sprint.on_target %>
+</p>
+
+<p>
+  <strong>Organization helping you?</strong>
+  <%= @sprint.organization_helping %>
+</p>
+
+<p>
+  <strong>Team is able to pull this off?</strong>
+  <%= @sprint.able_to_pull_of %>
+</p>
+
+<p>
+  <strong>What help from management do you need?</strong>
+  <%= @sprint.impediment %>
 </p>
 
 <%= link_to 'Edit', edit_project_phase_sprint_path(@project.id, @phase.id, @sprint) %> |
