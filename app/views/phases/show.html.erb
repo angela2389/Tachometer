@@ -161,4 +161,5 @@
   </table>
   <br>
   <%= link_to('Create new sprint', new_project_phase_sprint_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
+    <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
 </div>

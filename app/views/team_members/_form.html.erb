@@ -1,0 +1,31 @@
+<div class="container">
+  <%= form_for([@team.project, @team_member]) do |f| %>
+    <% if @team_member.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@team_member.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+        <ul>
+        <% @team_member.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="field form-group">
+      <%= f.label :user_id %>
+      <%= f.number_field :user_id  %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label 'Role' %><br>
+      <%= f.select :role, [Team::ROLES[1], Team::ROLES[2], Team::ROLES[3]]%>
+    </div>
+<%= f.hidden_field :team_id, :value => @team.id %>
+
+    <div class="actions">
+      <%= f.submit "Add Member" %>
+    </div>
+  <% end %>
+</div>

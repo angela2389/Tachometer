@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects do
+    resources :team_members
+    resources :teams
     resources :phases do
       resources :experiments
       resources :sprints
