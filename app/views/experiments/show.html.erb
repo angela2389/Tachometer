@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
+
 <p>
   <strong>Name:</strong>
   <%= @experiment.name %>
@@ -42,5 +44,5 @@
 </p>
 
 <hr>
-<%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id) %> |
-<%= link_to 'Back', project_phase_experiment_path(@project.id, @phase.id) %>
+<%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id, @experiment) %> |
+<%= link_to 'List', project_phase_experiments_path(@project.id, @phase.id) %>

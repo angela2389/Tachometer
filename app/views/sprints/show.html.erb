@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
+
 <p>
   <strong>Name:</strong>
   <%= @sprint.name %>
@@ -20,5 +22,5 @@
   <%= @sprint.completed %>
 </p>
 
-<%= link_to 'Edit', edit_project_phase_sprint_path(id: @sprint.id) %> |
-<%= link_to 'Back', project_phase_path(id: @sprint.phase.id)%>
+<%= link_to 'Edit', edit_project_phase_sprint_path(@project.id, @phase.id, @sprint) %> |
+<%= link_to 'List', project_phase_sprints_path(@project.id, @phase.id) %>

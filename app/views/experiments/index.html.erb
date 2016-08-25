@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Experiments</h1>
-
+<h1>Experiments for Project: <%= @project.name %> - Phase: <%= @phase.name %></h1>
+<br>
+<% if @experiments.empty?%>
+  <p>There are no experiments</p>
+<% else %>
 <table>
   <thead>
     <tr>
@@ -20,14 +23,16 @@
         <td><%= experiment.start_date %></td>
         <td><%= experiment.end_date %></td>
         <td><%= experiment.completed %></td>
-        <td><%= link_to 'Show', experiment %></td>
-        <td><%= link_to 'Edit', edit_experiment_path(experiment) %></td>
-        <td><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
+        <td><%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
+        <td><%= link_to 'Destroy', project_phase_experiment_path(@project.id, @phase.id, experiment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
+
 
 <br>
 
-<%= link_to 'New Experiment', new_experiment_path %>
+<%= link_to 'New Experiment', new_project_phase_experiment_path(@project.id, @phase.id) %>

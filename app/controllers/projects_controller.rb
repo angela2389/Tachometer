@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to edit_project_phase_path(@project, @project.phases.last) }
+        format.html { redirect_to edit_project_phase_path(project_id: @project.id, id: @project.phases.last) }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

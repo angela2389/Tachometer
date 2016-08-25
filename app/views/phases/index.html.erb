@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Phases</h1>
+<h1>Phases for <%= @project.name %></h1>
+<br>
 
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Interval</th>
-      <th>Phase</th>
       <th>Long term vision</th>
       <th>Kpi s</th>
       <th>Criteria</th>
@@ -29,10 +30,10 @@
   <tbody>
     <% @phases.each do |phase| %>
       <tr>
+        <td><%= phase.name %></td>
         <td><%= phase.start_date %></td>
         <td><%= phase.end_date %></td>
         <td><%= phase.interval %> weeks</td>
-        <td><%= Project::STAGES[phase.sequence] %></td>
         <td><%= phase.long_term_vision %></td>
         <td><%= phase.kpi_s %></td>
         <td><%= phase.criteria %></td>
@@ -46,8 +47,9 @@
         <td><%= phase.proof_of_value %></td>
         <td><%= phase.background %></td>
         <td><%= phase.note %></td>
-        <td><%= link_to 'Show', project_phase_path(phase.project, phase) %></td>
-        <td><%= link_to 'Edit', edit_project_phase_path(phase.project, phase) %></td>
+        <td><%= link_to 'Show', project_phase_path(@project.id, phase) %></td>
+        <td><%= link_to 'Edit', edit_project_phase_path(@project.id, phase) %></td>
+        <td><%= link_to 'Destroy', project_phase_path(@project.id, phase), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -55,4 +57,4 @@
 
 <br>
 
-<%= link_to 'New Phase', new_project_phase_path(@phases.project, @phases) %>
+<%= link_to 'New phase', new_project_phase_path(@project.id), class: "btn btn-large btn-success" %>

@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Sprints</h1>
+<h3>Project: <%= @project.name %> - Phase: <%= @phase.name %></h3>
+<br>
 
 <table>
   <thead>
@@ -20,10 +22,14 @@
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
         <td><%= sprint.completed %></td>
-        <td><%= sprint.id %></td>
+        <td><%= link_to 'Show', project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
+        <td><%= link_to 'Edit', edit_project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
+        <td><%= link_to 'Destroy', project_phase_sprint_path(@project.id, @phase.id, sprint), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'New Sprint', new_project_phase_sprint_path(@project.id, @phase.id) %>

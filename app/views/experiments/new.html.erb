@@ -1,5 +1,7 @@
 <h1>New Experiment</h1>
 
-<%= render 'form', experiment: @experiment %>
+<h3>Project: <em><%= @project.name %></em> - Phase: <em><%= @phase.name %></em></h3>
 
-<%= link_to 'Back', experiments_path %>
+<%= render 'form' %>
+
+<%= link_to 'List', project_phase_experiments_path(@project.id, @phase.id) %>

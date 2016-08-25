@@ -1,10 +1,13 @@
-<%= form_for(experiment) do |f| %>
-  <% if experiment.errors.any? %>
+
+<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
+
+<%= form_for([@project, @phase, @experiment]) do |f| %>
+  <% if @experiment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(experiment.errors.count, "error") %> prohibited this experiment from being saved:</h2>
+      <h2><%= pluralize(@experiment.errors.count, "error") %> prohibited this experiment from being saved:</h2>
 
       <ul>
-      <% experiment.errors.full_messages.each do |message| %>
+      <% @experiment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -30,6 +33,8 @@
     <%= f.label :completed %>
     <%= f.check_box :completed %>
   </div>
+
+  <%= f.hidden_field :phase_id, value: @phase.id %>
 
   <div class="actions">
     <%= f.submit %>
