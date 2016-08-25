@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p><b>Project:</b> <em><%= @project.name %></em>
@@ -109,20 +115,20 @@
     </tr>
     <% @phase.experiments.order(:start_date).each do |experiment| %>
       <tr>
-        <th>
+        <td>
         <% if experiment.completed %>
-          [x]
+          <span class="glyphicon glyphicon-check boxes"></span>
         <% else %>
-          [ ]
+          <span class="glyphicon glyphicon-unchecked boxes"></span>
         <% end %>
-        </th>
-        <th><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id, experiment) %></th>
-        <th><%= experiment.start_date.strftime("%d %B %Y") %></th>
-        <th><%= experiment.end_date.strftime("%d %B %Y") %></th>
-        <th><%= experiment.interviews_completion[:number] %>
-          (<%= number_to_percentage(experiment.interviews_completion[:ratio] * 100, options = {precision: 2}) %>)</th>
-        <th><%= experiment.early_adopters_conversion[:number] %>
-          (<%= number_to_percentage(experiment.early_adopters_conversion[:ratio] * 100, options = {precision: 2}) %>)</th>
+      </td>
+        <td><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
+        <td><%= experiment.start_date.strftime("%d %B %Y") %></td>
+        <td><%= experiment.end_date.strftime("%d %B %Y") %></td>
+        <td><%= experiment.interviews_completion[:number] %>
+            <p><progress id="p" value=<%= experiment.interviews_completion[:ratio] * 100 %> max=100><span></span>%</progress></p></td>
+        <td><%= experiment.early_adopters_conversion[:number] %>
+          <p><progress id="p" value=<%= experiment.early_adopters_conversion[:ratio] * 100 %> max=100><span></span>%</progress></p></td>
       </tr>
     <% end %>
   </table>
@@ -139,23 +145,23 @@
       <th>Sprint</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Story pounts</th>
+      <th>Story points</th>
       <th>Happiness</th>
     </tr>
     <% @phase.sprints.order(:start_date).each do |sprint| %>
       <tr>
-        <th>
+        <td>
         <% if sprint.completed %>
-          [x]
+          <span class="glyphicon glyphicon-check boxes"></span>
         <% else %>
-          [ ]
+          <span class="glyphicon glyphicon-unchecked boxes"></span>
         <% end %>
-        </th>
-        <th><%= link_to "sprint #{@phase.sprints.find_index(sprint) + 1}", project_phase_sprint_path(@project.id, @phase.id, sprint) %></th>
-        <th><%= sprint.start_date.strftime("%d %B %Y") %></th>
-        <th><%= sprint.end_date.strftime("%d %B %Y") %></th>
-        <th> </th>
-        <th> </th>
+      </td>
+        <td><%= link_to "sprint #{@phase.sprints.find_index(sprint) + 1}", project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
+        <td><%= sprint.start_date.strftime("%d %B %Y") %></td>
+        <td><%= sprint.end_date.strftime("%d %B %Y") %></td>
+        <td> </td>
+        <td> </td>
       </tr>
     <% end %>
   </table>
