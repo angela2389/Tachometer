@@ -22,38 +22,38 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label 'Estimated sprint points' %>
-    <%= f.number_field :est_points %>
+    <%= f.number_field :est_points, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label 'Average happy score' %>
-    <%= f.number_field :avg_happy, in: 1..5, step: 0.1 %>
+    <%= f.number_field :avg_happy, in: 1..5, step: 0.1, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label 'What actions came out of the retrospective?' %>
-    <%= f.text_field :retro_actions %>
+    <%= f.text_field :retro_actions, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label 'Are you on target?' %>
+  <div class="field form-group">
+    <%= f.label 'Are you on target?' %><br>
     <%= f.radio_button :on_target, '1' %> 1
     <%= f.radio_button :on_target, '2' %> 2
     <%= f.radio_button :on_target, '3' %> 3
@@ -62,7 +62,7 @@
   </div>
 
   <div class="field">
-    <%= f.label 'Organization helping you?' %>
+    <%= f.label 'Organization helping you?' %><br>
     <%= f.radio_button :organization_helping, '1' %> 1
     <%= f.radio_button :organization_helping, '2' %> 2
     <%= f.radio_button :organization_helping, '3' %> 3
@@ -71,7 +71,7 @@
   </div>
 
   <div class="field">
-    <%= f.label 'Team is able to pull this off' %>
+    <%= f.label 'Team is able to pull this off' %><br>
     <%= f.radio_button :able_to_pull_of, '1' %> 1
     <%= f.radio_button :able_to_pull_of, '2' %> 2
     <%= f.radio_button :able_to_pull_of, '3' %> 3
@@ -79,14 +79,14 @@
     <%= f.radio_button :able_to_pull_of, '5' %> 5
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label 'What help from management do you need?' %>
-    <%= f.text_field :impediment %>
+    <%= f.text_field :impediment, class:"form-control" %>
   </div>
 
   <%= f.hidden_field :phase_id, value: @phase.id %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Sprint", class: "btn btn-primary" %>
   </div>
 <% end %>
