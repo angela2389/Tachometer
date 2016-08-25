@@ -54,3 +54,6 @@ gem 'bootstrap-sass'
 gem 'rails_12factor', group: :production
 
 gem 'cancancan'
+
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
