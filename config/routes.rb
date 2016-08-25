@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/projects/:project_id/phases/:phase_id/sprints/:id/finalize' => 'sprints#finalize', as: :sprint_finalize
+
   resources :projects do
     resources :team_members
     resources :teams

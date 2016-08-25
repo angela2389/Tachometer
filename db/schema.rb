@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824183644) do
+ActiveRecord::Schema.define(version: 20160825113256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,9 +37,15 @@ ActiveRecord::Schema.define(version: 20160824183644) do
     t.integer  "interviews_done"
     t.integer  "early_adopters_planned"
     t.integer  "early_adopters_converted"
+    t.boolean  "conclusion"
     t.index ["phase_id"], name: "index_experiments_on_phase_id", using: :btree
     t.index ["sprint_id"], name: "index_experiments_on_sprint_id", using: :btree
     t.index ["team_id"], name: "index_experiments_on_team_id", using: :btree
+  end
+
+  create_table "experiments_sprints", id: false, force: :cascade do |t|
+    t.integer "experiment_id", null: false
+    t.integer "sprint_id",     null: false
   end
 
   create_table "phases", force: :cascade do |t|
@@ -84,10 +90,28 @@ ActiveRecord::Schema.define(version: 20160824183644) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "completed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "phase_id"
+    t.text     "things_done"
+    t.text     "things_learned"
+    t.integer  "est_points"
+    t.float    "avg_happy"
+    t.integer  "on_target"
+    t.integer  "organization_helping"
+    t.integer  "able_to_pull_of"
+    t.text     "impediment"
+    t.integer  "act_points"
+    t.text     "retro_actions"
     t.index ["phase_id"], name: "index_sprints_on_phase_id", using: :btree
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "experiment_id"
+    t.index ["experiment_id"], name: "index_steps_on_experiment_id", using: :btree
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -128,11 +152,11 @@ ActiveRecord::Schema.define(version: 20160824183644) do
   end
 
   add_foreign_key "experiments", "phases"
-  add_foreign_key "experiments", "sprints"
   add_foreign_key "experiments", "teams"
   add_foreign_key "phases", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "sprints", "phases"
+  add_foreign_key "steps", "experiments"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "phases"
