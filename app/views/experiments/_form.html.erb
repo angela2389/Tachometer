@@ -1,6 +1,4 @@
 
-<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
-
 <%= form_for([@project, @phase, @experiment]) do |f| %>
   <% if @experiment.errors.any? %>
     <div id="error_explanation">
@@ -14,29 +12,92 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
 
   <div class="field">
     <%= f.label :completed %>
-    <%= f.check_box :completed %>
+    <%= f.check_box :completed, class:"checkbox" %>
   </div>
+
+  <div class="field form-group">
+    <%= f.label :domain %>
+    <%= f.text_field :domain, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :assumption %>
+    <%= f.text_field :assumption, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :method %>
+    <%= f.text_field :method, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :observation %>
+    <%= f.text_field :observation, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :measure %>
+    <%= f.text_field :measure, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :learned %>
+    <%= f.text_field :learned, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :success_criteria %>
+    <%= f.text_field :success_criteria, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :action %>
+    <%= f.text_field :action, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :interviews_planned %>
+    <%= f.number_field :interviews_planned, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :interviews_done %>
+    <%= f.number_field :interviews_done, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :early_adopters_planned %>
+    <%= f.number_field :early_adopters_planned, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :early_adopters_converted %>
+    <%= f.number_field :early_adopters_converted, class:"form-control" %>
+  </div>
+
+
+
 
   <%= f.hidden_field :phase_id, value: @phase.id %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn-primary" %>
   </div>
 <% end %>
