@@ -32,6 +32,11 @@
     <%= f.check_box :completed %>
   </div>
 
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
   <%= f.hidden_field :phase_id, value: @phase.id %>
 
   <div class="actions">
