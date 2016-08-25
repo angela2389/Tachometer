@@ -21,10 +21,10 @@
   <%= @phase.interval %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Sequence:</strong>
   <%= @phase.sequence %>
-</p>
+</p> -->
 
 <p>
   <strong>Long term vision:</strong>
@@ -139,7 +139,7 @@
       <th>Sprint</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Story pounts</th>
+      <th>Story points</th>
       <th>Happiness</th>
     </tr>
     <% @phase.sprints.order(:start_date).each do |sprint| %>
