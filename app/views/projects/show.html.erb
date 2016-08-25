@@ -25,29 +25,30 @@
     </tr>
     <% @project.phases.order(:sequence).each do |phase| %>
       <tr>
-        <th>
+        <td>
         <% if @project.current_stage_id == phase.id %>
-          [x]
+          <span class="glyphicon glyphicon-check boxes"></span>
         <% else %>
-          [ ]
+          <span class="glyphicon glyphicon-unchecked boxes"></span>
         <% end %>
-        </th>
-        <th><%= link_to phase.name, project_phase_path(@project.id, phase) %></th>
-        <th><%= phase.start_date.strftime("%d %B %Y") %></th>
-        <th><%= phase.end_date.strftime("%d %B %Y") %></th>
+      </td>
+        <td><%= link_to phase.name, project_phase_path(@project.id, phase) %></td>
+        <td><%= phase.start_date.strftime("%d %B %Y") %></td>
+        <td><%= phase.end_date.strftime("%d %B %Y") %></td>
       </tr>
     <% end %>
   </table>
+  <br>
   <%= link_to 'New phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success' %>
 </div>
 
-
+<br>
 <%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
-
+<br>
 <% if can? :update, @project %>
-<%= link_to 'Edit', edit_project_path(@project) %>
+<%= link_to 'Edit project', edit_project_path(@project) %>
 <% end %>
 <% if can? :destroy, @project %>
 <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %> 
+<% end %>
 <%= link_to 'List', projects_path %>
