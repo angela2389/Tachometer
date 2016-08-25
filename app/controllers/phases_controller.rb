@@ -1,4 +1,5 @@
 class PhasesController < ApplicationController
+  load_and_authorize_resource
 
   before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :set_phase, only: [:show, :edit, :update, :destroy]
@@ -50,8 +51,8 @@ class PhasesController < ApplicationController
   def update
     respond_to do |format|
       if @phase.update(phase_params)
-        format.html 
-        format.json { render :nothing => true }
+        format.html { redirect_to project_phase_path(@project.id, @phase), notice: 'Phase was successfully updated.' }
+        format.json { render :show, status: :ok, location: @phase }
       else
         format.html { render :edit }
         format.json { render json: @phase.errors, status: :unprocessable_entity }

@@ -23,6 +23,11 @@
       <%= f.text_area :description, class:"form-control"%>
     </div>
 
+    <div class="field form_group">
+      <%= f.label :portfoliomanager_id %>
+      <%= f.collection_select(:portfoliomanager_id, User.where(role: 'admin'), :id, :first_name) %>
+
+
     <%= f.hidden_field :active, :value => TRUE %>
 
     <% if project.new_record? %>

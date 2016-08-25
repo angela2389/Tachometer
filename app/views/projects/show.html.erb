@@ -44,6 +44,10 @@
 
 <%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% if can? :update, @project %>
+<%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
+<% if can? :destroy, @project %>
+<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %> 
 <%= link_to 'List', projects_path %>
