@@ -1,7 +1,7 @@
 
 <h3>Project: <em><%= @project.name %></em> - Phase: <em><%= @phase.name %></em></h3>
 
-<%= form_for([@project, @phase]),:remote => true do |f| %>
+<%= form_for([@project, @phase],:remote => true) do |f| %>
 
   <% if @phase.errors.any? %>
     <div id="error_explanation">
@@ -300,5 +300,5 @@
               $('#edit_phase_<%=@phase.id%>').submit();
         }
     });
-    
+
 </script>
