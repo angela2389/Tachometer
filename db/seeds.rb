@@ -27,6 +27,7 @@ project1 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user1,
+  portfoliomanager_id: user6
   # current_stage_id: phase1_1.id
 )
 project2 = Project.create(
@@ -36,6 +37,7 @@ project2 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user2,
+  portfoliomanager_id: user6
   # current_stage_id: phase2_1.id
 )
 
@@ -46,6 +48,7 @@ project3 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: false,
   user: user3,
+  portfoliomanager_id: user6
 )
 
 # Phases (project/phase)
