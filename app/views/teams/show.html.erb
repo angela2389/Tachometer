@@ -24,6 +24,8 @@
         </tr>
       <% end %>
 
+      </tbody>
+      </table>
 
       <%= form_for([@team.project, @team_member]) do |f| %>
         <% if @team_member.errors.any? %>
@@ -38,24 +40,19 @@
           </div>
         <% end %>
 
-      <tr class="border_top">
-    <td>
-        <div class="field form-group">
+      <div class="border_top">
+
+        <div class="field form-group addmember">
             <%= f.collection_select(:user_id, User.all, :id, :first_name,{:prompt => 'Add a member'}, class: "input-sm") %>
         </div>
-    </td>
-    <td>
-        <div class="field form-group">
+
+        <div class="field form-group addmember">
             <%= f.select :role, [Team::ROLES[1], Team::ROLES[2], Team::ROLES[3]],{:prompt => 'Add role'}, class: "input-sm"%>
         </div>
         <%= f.hidden_field :team_id, :value => @team.id %></td>
-    <td>&nbsp;</td>
-    <td>
-        <div class="actions">
+
+        <div class="actions addmember">
             <%= f.submit "Add Member", class: "btn btn-primary btn-sm"%>
         </div>
-    </td>
-</tr>
-<% end %>
-</tbody>
-</table>
+        <% end %>
+      </div>
