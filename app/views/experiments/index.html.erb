@@ -24,7 +24,7 @@
         <td><%= experiment.end_date %></td>
         <td><%= experiment.completed %></td>
         <td><%= link_to 'Show', project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
-        <td><%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id, experiment.id) %></td>
+        <td><%= link_to 'Edit', edit_project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
         <td><%= link_to 'Destroy', project_phase_experiment_path(@project.id, @phase.id, experiment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

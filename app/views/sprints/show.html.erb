@@ -22,5 +22,5 @@
   <%= @sprint.completed %>
 </p>
 
-<%= link_to 'Edit', edit_project_phase_sprint_path(@project.id, @phase.id) %> |
+<%= link_to 'Edit', edit_project_phase_sprint_path(@project.id, @phase.id, @sprint) %> |
 <%= link_to 'List', project_phase_sprints_path(@project.id, @phase.id) %>

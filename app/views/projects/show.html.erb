@@ -32,7 +32,7 @@
           [ ]
         <% end %>
         </th>
-        <th><%= link_to phase.name, project_phase_path(@project.id) %></th>
+        <th><%= link_to phase.name, project_phase_path(@project.id, phase) %></th>
         <th><%= phase.start_date.strftime("%d %B %Y") %></th>
         <th><%= phase.end_date.strftime("%d %B %Y") %></th>
       </tr>

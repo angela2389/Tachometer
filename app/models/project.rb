@@ -17,6 +17,14 @@ class Project < ApplicationRecord
     Phase.find(self.current_stage_id)
   end
 
+  def get_list_of_project_phases
+    ret_array = []
+    self.phases.each do |p|
+      ret_array << [p.name, p.id]
+    end
+    ret_array
+  end
+
   def set_stage
     if !earliest_uncompleted.nil?
       self.update(current_stage_id:earliest_uncompleted.id)

@@ -23,16 +23,15 @@
       <%= f.text_area :description, class:"form-control"%>
     </div>
 
-    <div class="field form-group">
-      <%= f.hidden_field :active, :value => TRUE %>
-    </div>
+    <%= f.hidden_field :active, :value => TRUE %>
 
-
-    <%= f.fields_for :phases do |m| %>
-     <div class="field form-group">
-       <%= m.label 'Current phase' %><br>
-       <%= m.select :sequence, Project.get_list_of_phases%>
-     </div>
+    <% if project.new_record? %>
+      <%= f.fields_for :phases do |m| %>
+       <div class="field form-group">
+         <%= m.label 'Current phase' %><br>
+         <%= m.select :sequence, Project.get_list_of_phases %>
+       </div>
+      <% end %>
     <% end %>
 
     <div class="actions">
