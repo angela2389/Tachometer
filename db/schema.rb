@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825110044) do
+ActiveRecord::Schema.define(version: 20160825113256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20160825110044) do
     t.integer  "organization_helping"
     t.integer  "able_to_pull_of"
     t.text     "impediment"
+    t.integer  "act_points"
+    t.text     "retro_actions"
     t.index ["phase_id"], name: "index_sprints_on_phase_id", using: :btree
   end
 
