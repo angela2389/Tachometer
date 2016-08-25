@@ -52,8 +52,7 @@ class PhasesController < ApplicationController
   def update
     respond_to do |format|
       if @phase.update(phase_params)
-        format.html { redirect_to project_phase_path(@project.id, @phase), notice: 'Phase was successfully updated.' }
-        format.json { render :show, status: :ok, location: @phase }
+        format.json { render :nothing => true }
       else
         format.html { render :edit }
         format.json { render json: @phase.errors, status: :unprocessable_entity }
