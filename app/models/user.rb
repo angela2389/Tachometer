@@ -7,5 +7,5 @@ class User < ApplicationRecord
          has_many :team_members
          has_many :projects
 
-ROLES = %w[admin moderator user].freeze
+ROLES = %w[portfoliomanager productowner admin teammember].freeze
 end
