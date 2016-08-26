@@ -141,6 +141,33 @@ phase3_1 = Phase.create(
   project: project3
   )
 
+phase4_1 = Phase.create(
+  start_date: Date.today - 2,
+  end_date: Date.today + 28,
+  completed: false,
+  sequence: 0,
+  interval: 1,
+  project: project4
+  )
+
+phase5_1 = Phase.create(
+  start_date: Date.today - 2,
+  end_date: Date.today + 28,
+  completed: false,
+  sequence: 0,
+  interval: 1,
+  project: project5
+  )
+
+  phase6_1 = Phase.create(
+    start_date: Date.today - 2,
+    end_date: Date.today + 28,
+    completed: false,
+    sequence: 0,
+    interval: 1,
+    project: project6
+    )
+
 # Add current_stage_id
 
 project1.current_stage_id = phase1_1.id; project1.save
