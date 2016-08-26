@@ -247,13 +247,12 @@
                 <div class="panel-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                         <h4 class="panel-title">
-                            <%= f.label :interval %>
+                            <%= f.label 'How long is the sprint?'%>
                         </h4>
                     </a>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <p>How long is the sprint?</p>
                         <%= f.select :interval, [["1 week", 1] ,["2 weeks", 2], ["3 weeks", 3],["4 weeks", 4]], {}, class: "form-control" %>
                     </div>
                 </div>
