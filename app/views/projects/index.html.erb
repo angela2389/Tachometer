@@ -12,28 +12,32 @@
     <% if project.active && project.role_check(current_user) %>
     <div class="col-md-3 col-sm-6">
         <%= link_to project do %>
+        <% target = project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.on_target || "-" %>
+        <% happy = project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.avg_happy || "-" %>
+        <% organization = project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.organization_helping || "-" %>
+        <% pullof = project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.able_to_pull_of || "-" %>
         <div class="panel panel-default activeblock">
             <div class="panel-body" style="height: 130px">
 
                 <div style="width: 50%; float:left">
                     <p><%= project.name %><span</p>
                     <span class="happiness">
-                      <%= project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.avg_happy || "-" %>
+                      <%= happy %>
                     </span>
                     <p class="meters">Happiness rating</p>
                 </div>
 
                 <div style="width: 50%; float:right">
                     <p class="meters">On target</p>
-                    <div class="progress_bar" value="100">
+                    <div class="progress_bar" value="<%= target * 20 || "-" %>">
                         <div class="progress-label">Loading...</div>
                     </div>
                     <p class="meters">Governance</p>
-                    <div class="progress_bar" value="70">
+                    <div class="progress_bar" value="<%= organization * 20 || "-" %>">
                         <div class="progress-label">Loading...</div>
                     </div>
                     <p class="meters">Team</p>
-                    <div class="progress_bar" value="20">
+                    <div class="progress_bar" value="<%= pullof * 20 || "-" %>">
                         <div class="progress-label">Loading...</div>
                     </div>
                 </div>
