@@ -1,16 +1,43 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
 <p id="notice"><%= notice %></p>
 
 <h3>Active Projects</h3>
+
 
 <div class="container block">
     <% @projects.each do |project| %>
     <% if project.active && project.role_check(current_user) %>
     <div class="col-md-3 col-sm-6">
         <%= link_to project do %>
-          <div class="panel panel-default activeblock">
-              <div class="panel-body" style="height: 80px">
-                  <td><%= project.name %></td><br>
-              </div>
+        <div class="panel panel-default activeblock">
+            <div class="panel-body" style="height: 130px">
+
+                <div style="width: 50%; float:left">
+                    <p><%= project.name %><span</p>
+                    <span class="happiness">
+                      <%= project.phases.last.sprints.last&.avg_happy || "-" %>
+                    </span>
+                    <p class="meters">Happiness rating</p>
+                </div>
+
+                <div style="width: 50%; float:right">
+                    <p class="meters">On target</p>
+                    <div class="progress_bar" value="100">
+                        <div class="progress-label">Loading...</div>
+                    </div>
+                    <p class="meters">Governance</p>
+                    <div class="progress_bar" value="70">
+                        <div class="progress-label">Loading...</div>
+                    </div>
+                    <p class="meters">Team</p>
+                    <div class="progress_bar" value="20">
+                        <div class="progress-label">Loading...</div>
+                    </div>
+                </div>
+            </div>
             <% end %>
         </div>
     </div>
@@ -20,7 +47,7 @@
       <% if can? :manage, Project %>
         <%= link_to new_project_path do %>
           <div class="panel panel-default">
-              <div class="panel-body" style="height: 80px">
+              <div class="panel-body" style="height: 130px">
                   <td>Create a new project..</td>
               </div>
           </div>
@@ -49,3 +76,49 @@
     <% end %>
     <% end %>
 </div>
+
+<script>
+
+$( document ).ready(function() {
+
+
+
+$(function() {
+  $('.progress_bar').each(function() {
+var progressbar = $(this),
+      progressLabel = $(this).find( ".progress-label" ),
+    progressvalue = $(this).attr('value');
+console.log(progressvalue);
+
+    progressbar.progressbar({
+      value: false,
+      change: function() {
+
+        progressLabel.text( progressbar.progressbar( "value" )  );
+      },
+      complete: function() {
+        progressLabel.text( "So happy!" );
+      }
+    });
+
+    function progress() {
+
+      var val = progressbar.progressbar( "value" ) || 0;
+
+      progressbar.progressbar( "value", val + 1 )
+        .removeClass("beginning middle end")
+        .addClass(val < 40 ? "beginning" : val < 80 ? "middle" : "end");
+
+
+      if ( val < progressvalue ) {
+        setTimeout( progress, 1 );
+      }
+    }
+
+    setTimeout( progress, 1 );
+       });
+    });
+
+    });
+
+    </script>
