@@ -80,6 +80,6 @@ class PhasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def phase_params
-      params.require(:phase).permit(:project_id, :start_date, :end_date, :interval, :sequence, :long_term_vision, :kpi_s, :criteria, :bottlenecks, :problem_definition, :solutions, :long_term, :key_benefits, :vision, :test_first, :proof_of_value, :background, :note)
+      params.require(:phase).permit(:project_id, :start_date, :end_date, :interval, :sequence, :long_term_vision, :kpi_s, :criteria, :bottlenecks, :problem_definition, :solutions, :long_term, :key_benefits, :vision, :test_first, :sprint_amount, :proof_of_value, :background, :note)
     end
 end

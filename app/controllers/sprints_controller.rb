@@ -30,7 +30,7 @@ class SprintsController < ApplicationController
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to project_phase_sprint_path(@project.id, @phase.id, @sprint), notice: 'Sprint was successfully created.' }
+        format.html { redirect_to project_phase_path(@project.id, @phase.id), notice: 'Sprint was successfully created.' }
         format.json { render :show, status: :created, location: @sprint }
       else
         format.html { render :new }

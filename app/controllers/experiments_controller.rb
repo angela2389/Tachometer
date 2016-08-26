@@ -30,7 +30,7 @@ class ExperimentsController < ApplicationController
 
     respond_to do |format|
       if @experiment.save
-        format.html { redirect_to project_phase_experiment_path(@project.id, @phase.id, @experiment), notice: 'Experiment was successfully created.' }
+        format.html { redirect_to project_phase_path(@project.id, @phase.id), notice: 'Experiment was successfully created.' }
         format.json { render :show, status: :created, location: @experiment }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ExperimentsController < ApplicationController
   def update
     respond_to do |format|
       if @experiment.update(experiment_params)
-        format.html { redirect_to project_phase_experiment_path(@project.id, @phase.id, @experiment), notice: 'Experiment was successfully updated.' }
+        format.html { redirect_to project_phase_path(@project.id, @phase.id), notice: 'Experiment was successfully updated.' }
         format.json { render :show, status: :ok, location: @experiment }
       else
         format.html { render :edit }

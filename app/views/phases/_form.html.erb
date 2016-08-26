@@ -274,6 +274,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEightteen">
+                    <h4 class="panel-title">
+                        <%= f.label 'How many sprints will you do?'  %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseEightteen" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <%= f.text_area :sprint_amount, class:"form-control" %>
+                </div>
+            </div>
+        </div>
     </div>
     <%= f.hidden_field :completed, :value => FALSE %>
     <%= f.hidden_field :project_id, value: @project.id %>
