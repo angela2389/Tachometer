@@ -6,9 +6,9 @@ class Phase < ApplicationRecord
   has_many :experiments
   after_create :give_team
   after_update :set_end_date
-  # after_update :give_sprints
+  after_update :give_sprints
   #after_update :set_end_date if (:sprintamount.present? && :interval.present? && :start_date.present?)
-#  after_create :give_sprints
+
   after_save :set_stage_project
     # byebug
     # number_of_phases = self.project.phases.length
@@ -67,16 +67,17 @@ class Phase < ApplicationRecord
   end
 
   def give_sprints
-     if self.sprints.any?
-      (self.sprint_amount - self.sprints.count).times { self.sprint.create }
-      self.set_sprint_dates
-     else
-     self.sprint_amount.times { self.sprints.create }
-     self.set_end_date
+    if self.sprints.any?
+     (self.sprint_amount - self.sprints.count).times { self.sprint.create }
      self.set_sprint_dates
-
-   end
+   elsif !self.sprint_amount.present?
+     return
+   else
+    (self.sprint_amount).times { self.sprints.create }
+    self.set_end_date
+    self.set_sprint_dates
   end
+ end
 
 
 
