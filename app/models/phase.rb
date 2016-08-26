@@ -36,11 +36,12 @@ class Phase < ApplicationRecord
   def set_stage_project
     self.project.set_stage
   end
+  
   def phase_weeks
-    days = (Date.parse("#{self.start_date}")..Date.parse("#{self.end_date}")).to_a
-    weeks = days.each_slice(7).to_a.map { |w|
-            [w.first, w.last].map { |d| "#{d.year}-#{d.month}-#{d.day}" } }
-  end
+     days = (Date.parse("#{self.start_date}")..Date.parse("#{self.end_date}")).to_a
+     weeks = days.each_slice(7*self.interval).to_a.map { |w|
+             [w.first, w.last].map { |d| "#{d.year}-#{d.month}-#{d.day}" } }
+   end
 
   def set_sprint_dates
   self.sprints.each_with_index do |sprint,i|
