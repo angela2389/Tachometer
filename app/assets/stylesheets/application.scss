@@ -127,3 +127,10 @@ input[type=radio] {
     margin-top: 32px;;
     font-size: 30px;
   }
+
+  .projectname {
+    white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ max-width: 200px;
+  }
