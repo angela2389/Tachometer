@@ -6,23 +6,31 @@
             <th>Name</td>
             <th>Role</td>
             <th>Email</td>
+            <th>Phonenumber</td>
             <th>Delete</td>
         </tr>
+
+        <% @team.team_members[1..-2].each do |member| %>
+          <tr>
+              <td><%="#{member.user.first_name} #{member.user.last_name} "%></td>
+              <td><%= member.role %></td>
+              <td><%= member.user.email%></td>
+              <td><%= member.user.phonenumber%></td>
+              <td><%= link_to 'Destroy', project_team_member_path(member.project, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
         <tr>
             <td><%="#{@team.manager.user.first_name} #{@team.manager.user.last_name} "%></td>
-            <td><%= @team.manager.role %></td>
+            <td><%=@team.manager.role %></td>
             <td><%=@team.manager.user.email%></td>
+            <td><%=@team.manager.user.phonenumber%></td>
             <td>Owner</td>
         </tr>
-
-      <% @team.team_members[1..-2].each do |member| %>
-        <tr>
-            <td><%="#{member.user.first_name} #{member.user.last_name} "%></td>
-            <td><%= member.role %></td>
-            <td><%= member.user.email%></td>
-            <td><%= link_to 'Destroy', project_team_member_path(member.project, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
+        <td><%="#{@coach.first_name} #{@coach.last_name} "%></td>
+            <td><%="Coach"%></td>
+            <td><%=@coach.email%></td>
+            <td><%=@coach.phonenumber%></td>
+            <td>Coach</td>
 
       </tbody>
       </table>
@@ -47,7 +55,7 @@
         </div>
 
         <div class="field form-group addmember">
-            <%= f.select :role, [Team::ROLES[1], Team::ROLES[2], Team::ROLES[3]],{:prompt => 'Add role'}, class: "input-sm"%>
+            <%= f.select :role, [Team::ROLES[1], Team::ROLES[2]],{:prompt => 'Add role'}, class: "input-sm"%>
         </div>
         <%= f.hidden_field :team_id, :value => @team.id %></td>
 

@@ -8,6 +8,8 @@ class TeamsController < ApplicationController
     def show
       @team = Team.find(params[:id])
       @team_member = @team.team_members.new
+      @project = Project.find(params[:project_id])
+      @coach = User.find(@project.coach_id)
     end
 
 end
