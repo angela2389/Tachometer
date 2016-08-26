@@ -6,24 +6,37 @@
             <th>Name</td>
             <th>Role</td>
             <th>Email</td>
+            <th>Phonenumber</td>
             <th>Delete</td>
         </tr>
-        <tr>
-            <td><%="#{@team.manager.user.first_name} #{@team.manager.user.last_name} "%></td>
-            <td><%= @team.manager.role %></td>
-            <td><%=@team.manager.user.email%></td>
-            <td>Owner</td>
-        </tr>
 
-      <% @team.team_members[1..-2].each do |member| %>
+        <% @team.team_members[1..-2].each do |member| %>
+          <tr>
+              <td><%="#{member.user.first_name} #{member.user.last_name} "%></td>
+              <td><%= member.role %></td>
+              <td><%= member.user.email%></td>
+              <td><%= member.user.phonenumber%></td>
+              <td><%= link_to 'Destroy', project_team_member_path(member.project, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
         <tr>
-            <td><%="#{member.user.first_name} #{member.user.last_name} "%></td>
-            <td><%= member.role %></td>
-            <td><%= member.user.email%></td>
-            <td><%= link_to 'Destroy', project_team_member_path(member.project, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%="#{@productowner.first_name} #{@productowner.last_name} "%></td>
+          <td><%="Product Owner"%></td>
+          <td><%=@productowner.email%></td>
+          <td><%=@productowner.phonenumber%></td>
         </tr>
-      <% end %>
-
+        <tr>
+            <td><%="#{@coach.first_name} #{@coach.last_name} "%></td>
+            <td><%="Coach"%></td>
+            <td><%=@coach.email%></td>
+            <td><%=@coach.phonenumber%></td>
+        </tr>
+        <tr>
+            <td><%="#{@portfoliomanager.first_name} #{@portfoliomanager.last_name} "%></td>
+            <td><%="Portfoliomanager"%></td>
+            <td><%=@portfoliomanager.email%></td>
+            <td><%=@portfoliomanager.phonenumber%></td>
+        </tr>
       </tbody>
       </table>
 
@@ -47,7 +60,7 @@
         </div>
 
         <div class="field form-group addmember">
-            <%= f.select :role, [Team::ROLES[1], Team::ROLES[2], Team::ROLES[3]],{:prompt => 'Add role'}, class: "input-sm"%>
+            <%= f.select :role, [Team::ROLES[1], Team::ROLES[2]],{:prompt => 'Add role'}, class: "input-sm"%>
         </div>
         <%= f.hidden_field :team_id, :value => @team.id %></td>
 

@@ -6,11 +6,11 @@ class Ability
     # Can READ anything
       can :read, :all
     if user.persisted? # in db, so logged in
-      if user.role == "admin"
+      if user.role == "coach"
       can :manage, :all
       can :access, :rails_admin
       can :dashboard
-      # Can MANAGE (create, read, update, destroy, etc.) own Post
+      # Can MANAGE (create, read, update, destroy, etc.) own POST
       else
       can :create, :all
       can :manage, Project, user: user

@@ -73,7 +73,7 @@ class Project < ApplicationRecord
   end
 
   def role_check(user)
-    self.user == user || self.portfoliomanager_id == user.id
+    self.user == user || self.portfoliomanager_id == user.id || self.coach_id == user.id
   end
 
 private
