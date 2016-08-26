@@ -285,6 +285,10 @@
 
 <script>
 
+  $( document ).ready(function() {
+      $('#edit_phase_<%=@phase.id%>').submit();
+  });
+
     $('input, select, textarea').filter(function () {
         return this.value;
     }).parentsUntil(".panel-default").siblings(".panel-heading").addClass('completed');
