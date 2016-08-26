@@ -18,7 +18,7 @@
                 <div style="width: 50%; float:left">
                     <p><%= project.name %><span</p>
                     <span class="happiness">
-                      <%= project.phases.last.sprints.last&.avg_happy || "-" %>
+                      <%= project.phases.find(project.current_stage_id).sprints.where(:completed => FALSE).first&.avg_happy || "-" %>
                     </span>
                     <p class="meters">Happiness rating</p>
                 </div>
