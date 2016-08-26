@@ -1,6 +1,4 @@
 class PhasesController < ApplicationController
-  load_and_authorize_resource
-
   before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :set_phase, only: [:show, :edit, :update, :destroy]
 

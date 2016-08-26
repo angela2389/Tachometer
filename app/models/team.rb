@@ -7,7 +7,7 @@ class Team < ApplicationRecord
 
   ROLES = ["Product Owner", "Advisor", "Team Member", "Coach"]
 
-  def manager
-    self.team_members.find { |x| x.role == Team::ROLES[0] }
-  end
+  # def manager
+  #   self.team_members.find { |x| x.role == Team::ROLES[0] }
+  # end
 end

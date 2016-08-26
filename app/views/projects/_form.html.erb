@@ -24,12 +24,12 @@
 
     <div class="field form_group">
       <%= f.label :portfoliomanager_id %>
-      <%= f.collection_select(:portfoliomanager_id, User.where(role: 'portfoliomanager'), :id, :first_name) %>
+      <%= f.collection_select(:portfoliomanager_id, User.where(role: 'portfoliomanager'), :id, :first_name, {}, class: "form-control") %>
     </div>
 
     <div class="field form_group">
       <%= f.label :coach_id %>
-      <%= f.collection_select(:coach_id, User.where(role: 'coach'), :id, :first_name) %>
+      <%= f.collection_select(:coach_id, User.where(role: 'coach'), :id, :first_name, {}, class: "form-control") %>
     </div>
 
     <%= f.hidden_field :active, :value => TRUE %>
@@ -38,7 +38,7 @@
       <%= f.fields_for :phases do |m| %>
        <div class="field form-group">
          <%= m.label 'Current phase' %>
-         <%= m.select :sequence, Project.get_list_of_phases %>
+         <%= m.select :sequence, Project.get_list_of_phases, {}, class: "form-control" %>
        </div>
       <% end %>
     <% end %>

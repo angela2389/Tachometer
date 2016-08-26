@@ -20,18 +20,23 @@
           </tr>
         <% end %>
         <tr>
-            <td><%="#{@team.manager.user.first_name} #{@team.manager.user.last_name} "%></td>
-            <td><%=@team.manager.role %></td>
-            <td><%=@team.manager.user.email%></td>
-            <td><%=@team.manager.user.phonenumber%></td>
-            <td>Owner</td>
+          <td><%="#{@productowner.first_name} #{@productowner.last_name} "%></td>
+          <td><%="Product Owner"%></td>
+          <td><%=@productowner.email%></td>
+          <td><%=@productowner.phonenumber%></td>
         </tr>
-        <td><%="#{@coach.first_name} #{@coach.last_name} "%></td>
+        <tr>
+            <td><%="#{@coach.first_name} #{@coach.last_name} "%></td>
             <td><%="Coach"%></td>
             <td><%=@coach.email%></td>
             <td><%=@coach.phonenumber%></td>
-            <td>Coach</td>
-
+        </tr>
+        <tr>
+            <td><%="#{@portfoliomanager.first_name} #{@portfoliomanager.last_name} "%></td>
+            <td><%="Portfoliomanager"%></td>
+            <td><%=@portfoliomanager.email%></td>
+            <td><%=@portfoliomanager.phonenumber%></td>
+        </tr>
       </tbody>
       </table>
 
