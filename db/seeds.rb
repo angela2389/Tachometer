@@ -17,7 +17,6 @@ user5 = User.create( email: 'tachometero5@gmail.com', password: 'abcd1234', firs
 user6 = User.create( email: 'doris@gmail.com', password: 'abcd1234', first_name: 'Doris', last_name: 'Dromer', phonenumber: '020-123456', role: 'portfoliomanager' )
 user7 = User.create( email: 'miriam@tocino.com', password: 'abcd1234', first_name: 'Miriam', last_name: 'Tocino', phonenumber: '020-123456', role: 'portfoliomanager' )
 user8 = User.create( email: 'douwe.leanup@gmail.com', password: 'douwe1', first_name: 'Douwe', last_name: 'Wester', phonenumber: '020-888888', role: 'coach')
-user9 = User.create( email: 'laura@gmail.com', password: 'abcd1234', first_name: 'Laura', last_name: 'Molenaar', phonenumber: '020-888889', role: 'admin')
 
 # Experiments
 
