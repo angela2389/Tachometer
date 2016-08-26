@@ -1,171 +1,205 @@
 <% content_for :head do %>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
- <% end %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 
-<p><b>Project:</b> <em><%= @project.name %></em>
-
-<h1>
-  Phase: <%= @phase.name %>
-</h1>
-
 <p>
-  <strong>Start date:</strong>
-  <%= @phase.start_date %>
-</p>
+    <b>Project:</b>
+    <em><%= @project.name %></em>
 
-<p>
-  <strong>End date:</strong>
-  <%= @phase.end_date %>
-</p>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#menu1">Dash</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu2">Phase</a>
+            </li>
+        </ul>
 
-<p>
-  <strong>Interval:</strong>
-  <%= @phase.interval %>
-</p>
+        <div class="tab-content">
+            <div id="menu1" class="tab-pane fade in active">
+              <br><br><br>
+                <div class="phase_overview">
+                    <table class="phase_table">
+                        <tr class="top_row">
+                            <th>Completed</th>
+                            <th>Sprint</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Story points</th>
+                            <th>Happiness</th>
+                        </tr>
+                        <% @phase.sprints.order(:start_date).each do |sprint| %>
+                        <tr>
+                            <td>
+                                <% if sprint.completed %>
+                                <span class="glyphicon glyphicon-check boxes"></span>
+                            <% else %>
+                                <span class="glyphicon glyphicon-unchecked boxes"></span>
+                                <% end %>
+                            </td>
+                            <td><%= link_to "sprint #{@phase.sprints.find_index(sprint) + 1}", project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
+                            <td><%= sprint.start_date.strftime("%d %B %Y") %></td>
+                            <td><%= sprint.end_date.strftime("%d %B %Y") %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <br>
+                    <%= link_to('Create new sprint', new_project_phase_sprint_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
+                    <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
+                </div>
+                <br><br>
+                <div class="phase_overview">
+                    <table class="phase_table">
+                        <tr class="top_row">
+                            <th>Completed</th>
+                            <th>Experiment</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Interviews completion</th>
+                            <th>Early adopters conversion</th>
+                        </tr>
+                        <% @phase.experiments.order(:start_date).each do |experiment| %>
+                        <tr>
+                            <td>
+                                <% if experiment.completed %>
+                                <span class="glyphicon glyphicon-check boxes"></span>
+                            <% else %>
+                                <span class="glyphicon glyphicon-unchecked boxes"></span>
+                                <% end %>
+                            </td>
+                            <td><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
+                            <td><%= experiment.start_date.strftime("%d %B %Y") %></td>
+                            <td><%= experiment.end_date.strftime("%d %B %Y") %></td>
+                            <td><%= experiment.interviews_completion[:number] %>
+                                <p>
+                                    <progress id="p" value=<%= experiment.interviews_completion[:ratio] * 100 %> max=100>
+                                        <span></span>%</progress>
+                                </p>
+                            </td>
+                            <td><%= experiment.early_adopters_conversion[:number] %>
+                                <p>
+                                    <progress id="p" value=<%= experiment.early_adopters_conversion[:ratio] * 100 %> max=100>
+                                        <span></span>%</progress>
+                                </p>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <br>
+                    <%= link_to('Create new experiment', new_project_phase_experiment_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
+                </div>
 
-<!-- <p>
-  <strong>Sequence:</strong>
-  <%= @phase.sequence %>
-</p> -->
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h1>
+                    Phase:
+                    <%= @phase.name %>
+                </h1>
 
-<p>
-  <strong>Long term vision:</strong>
-  <%= @phase.long_term_vision %>
-</p>
+                <p>
+                    <strong>Start date:</strong>
+                    <%= @phase.start_date %>
+                </p>
 
-<p>
-  <strong>Kpi s:</strong>
-  <%= @phase.kpi_s %>
-</p>
+                <p>
+                    <strong>End date:</strong>
+                    <%= @phase.end_date %>
+                </p>
 
-<p>
-  <strong>Criteria:</strong>
-  <%= @phase.criteria %>
-</p>
+                <p>
+                    <strong>Interval:</strong>
+                    <%= @phase.interval %>
+                </p>
 
-<p>
-  <strong>Bottlenecks:</strong>
-  <%= @phase.bottlenecks %>
-</p>
+                <!-- <p>
+          <strong>Sequence:</strong>
+          <%= @phase.sequence %>
+        </p> -->
 
-<p>
-  <strong>Problem definition:</strong>
-  <%= @phase.problem_definition %>
-</p>
+                <p>
+                    <strong>Long term vision:</strong>
+                    <%= @phase.long_term_vision %>
+                </p>
 
-<p>
-  <strong>Solutions:</strong>
-  <%= @phase.solutions %>
-</p>
+                <p>
+                    <strong>Kpi s:</strong>
+                    <%= @phase.kpi_s %>
+                </p>
 
-<p>
-  <strong>Long term:</strong>
-  <%= @phase.long_term %>
-</p>
+                <p>
+                    <strong>Criteria:</strong>
+                    <%= @phase.criteria %>
+                </p>
 
-<p>
-  <strong>Key benefits:</strong>
-  <%= @phase.key_benefits %>
-</p>
+                <p>
+                    <strong>Bottlenecks:</strong>
+                    <%= @phase.bottlenecks %>
+                </p>
 
-<p>
-  <strong>Vision:</strong>
-  <%= @phase.vision %>
-</p>
+                <p>
+                    <strong>Problem definition:</strong>
+                    <%= @phase.problem_definition %>
+                </p>
 
-<p>
-  <strong>Test first:</strong>
-  <%= @phase.test_first %>
-</p>
+                <p>
+                    <strong>Solutions:</strong>
+                    <%= @phase.solutions %>
+                </p>
 
-<p>
-  <strong>Proof of value:</strong>
-  <%= @phase.proof_of_value %>
-</p>
+                <p>
+                    <strong>Long term:</strong>
+                    <%= @phase.long_term %>
+                </p>
 
-<p>
-  <strong>Background:</strong>
-  <%= @phase.background %>
-</p>
+                <p>
+                    <strong>Key benefits:</strong>
+                    <%= @phase.key_benefits %>
+                </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @phase.note %>
-</p>
+                <p>
+                    <strong>Vision:</strong>
+                    <%= @phase.vision %>
+                </p>
 
-<br>
-<%= link_to 'Edit', edit_project_phase_path(@phase.project, @phase) %> |
-<%= link_to 'List', project_phases_path(@phase.project) %>
+                <p>
+                    <strong>Test first:</strong>
+                    <%= @phase.test_first %>
+                </p>
 
-<hr>
+                <p>
+                    <strong>Proof of value:</strong>
+                    <%= @phase.proof_of_value %>
+                </p>
 
-<div class="phase_overview">
-  <table class="phase_table">
-    <tr class="top_row">
-      <th>Completed</th>
-      <th>Experiment</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Interviews completion</th>
-      <th>Early adopters conversion</th>
-    </tr>
-    <% @phase.experiments.order(:start_date).each do |experiment| %>
-      <tr>
-        <td>
-        <% if experiment.completed %>
-          <span class="glyphicon glyphicon-check boxes"></span>
-        <% else %>
-          <span class="glyphicon glyphicon-unchecked boxes"></span>
-        <% end %>
-      </td>
-        <td><%= link_to experiment.name, project_phase_experiment_path(@project.id, @phase.id, experiment) %></td>
-        <td><%= experiment.start_date.strftime("%d %B %Y") %></td>
-        <td><%= experiment.end_date.strftime("%d %B %Y") %></td>
-        <td><%= experiment.interviews_completion[:number] %>
-            <p><progress id="p" value=<%= experiment.interviews_completion[:ratio] * 100 %> max=100><span></span>%</progress></p></td>
-        <td><%= experiment.early_adopters_conversion[:number] %>
-          <p><progress id="p" value=<%= experiment.early_adopters_conversion[:ratio] * 100 %> max=100><span></span>%</progress></p></td>
-      </tr>
-    <% end %>
-  </table>
-  <br>
-  <%= link_to('Create new experiment', new_project_phase_experiment_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
-</div>
+                <p>
+                    <strong>Background:</strong>
+                    <%= @phase.background %>
+                </p>
 
-<hr>
+                <p>
+                    <strong>Note:</strong>
+                    <%= @phase.note %>
+                </p>
 
-<div class="phase_overview">
-  <table class="phase_table">
-    <tr class="top_row">
-      <th>Completed</th>
-      <th>Sprint</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Story points</th>
-      <th>Happiness</th>
-    </tr>
-    <% @phase.sprints.order(:start_date).each do |sprint| %>
-      <tr>
-        <td>
-        <% if sprint.completed %>
-          <span class="glyphicon glyphicon-check boxes"></span>
-        <% else %>
-          <span class="glyphicon glyphicon-unchecked boxes"></span>
-        <% end %>
-      </td>
-        <td><%= link_to "sprint #{@phase.sprints.find_index(sprint) + 1}", project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
-        <td><%= sprint.start_date.strftime("%d %B %Y") %></td>
-        <td><%= sprint.end_date.strftime("%d %B %Y") %></td>
-        <td> </td>
-        <td> </td>
-      </tr>
-    <% end %>
-  </table>
-  <br>
-  <%= link_to('Create new sprint', new_project_phase_sprint_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
-    <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
-</div>
+                <br>
+                <%= link_to 'Edit', edit_project_phase_path(@phase.project, @phase) %>
+                |
+                <%= link_to 'List', project_phases_path(@phase.project) %>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+
+
+    <hr>
