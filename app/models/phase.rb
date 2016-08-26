@@ -1,10 +1,15 @@
+require 'date'
 class Phase < ApplicationRecord
   belongs_to :project
   has_one :team
   has_many :sprints
   has_many :experiments
+
   after_create :give_team
-  after_save do
+  after_update :set_end_date
+  #after_update :set_end_date if (:sprintamount.present? && :interval.present? && :start_date.present?)
+#  after_create :give_sprints
+  after_save :set_stage_project
     # byebug
     # number_of_phases = self.project.phases.length
     # completed_phases = self.project.phases.where(completed: true)
@@ -19,14 +24,56 @@ class Phase < ApplicationRecord
     #   self.project.current_stage_id = self.project.phases.find_by(sequence: highest_completed_sequence + 1)
     #   self.project.save
     # end
-  end
+  
 
   def name
     Project::STAGES[self.sequence]
   end
+
+
+ private
+
+  def set_stage_project
+    self.project.set_stage
+  end
+  def phase_weeks
+    days = (Date.parse("#{self.start_date}")..Date.parse("#{self.end_date}")).to_a
+    weeks = days.each_slice(7).to_a.map { |w|
+            [w.first, w.last].map { |d| "#{d.year}-#{d.month}-#{d.day}" } }
+  end
+
+  def set_sprint_dates
+  self.sprints.each_with_index do |sprint,i|
+    sprint.update(start_date: self.phase_weeks[i][0], end_date: self.phase_weeks[i][1])
+    end
+  end
+
   def give_team
     self.create_team
     manager = self.project.user
     self.team.team_members.create(user:manager,role:Team::ROLES[0])
   end
+
+
+  def set_end_date
+    if self.sprint_amount_changed? && self.interval_changed? && self.start_date_changed?
+    number = self.interval * self.sprint_amount
+    date = self.start_date + number.weeks
+    self.update(end_date: date) unless date == self.end_date
+    else
+    return
+    end
+  end
+
+  def give_sprints
+    if self.sprints.any?
+      (self.sprint_amount - self.sprints.count).times { self.sprint.create }
+    else
+    self.sprint_amount.times { self.sprints.create }
+    self.set_end_date
+    end
+  end
+
+
+
 end

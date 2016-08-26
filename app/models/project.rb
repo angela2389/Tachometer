@@ -30,8 +30,11 @@ class Project < ApplicationRecord
   def set_stage
     if !earliest_uncompleted.nil?
       self.update(current_stage_id:earliest_uncompleted.id)
-      else
+    elsif !last_completed.nil?
       self.update(current_stage_id:last_completed.id)
+    else
+      id = self.phases.last.id
+      self.update(current_stage_id: id)
     end
   end
 
@@ -76,7 +79,7 @@ class Project < ApplicationRecord
     self.user == user || self.portfoliomanager_id == user.id || self.coach_id == user.id
   end
 
-private
+
 
   def earliest_uncompleted
     self.phases.where(:completed => false).sort{ |a,b| a.sequence <=> b.sequence }.first
