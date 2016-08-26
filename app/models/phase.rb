@@ -6,7 +6,7 @@ class Phase < ApplicationRecord
   has_many :experiments
   after_create :give_team
   after_update :set_end_date
-  after_update :give_sprints
+  # after_update :give_sprints
   #after_update :set_end_date if (:sprintamount.present? && :interval.present? && :start_date.present?)
 #  after_create :give_sprints
   after_save :set_stage_project
