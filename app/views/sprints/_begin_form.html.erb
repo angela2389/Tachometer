@@ -1,0 +1,110 @@
+<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
+<%= form_for([@project, @phase, @sprint]) do |f| %>
+  <% if @sprint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sprint.errors.count, "error") %> prohibited this sprint from being saved:</h2>
+
+      <ul>
+      <% @sprint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="phase_table">
+    <% @phase.experiments.each do |exp| %>
+    <tr>
+      <td><%= exp.name %></td>
+      <td>
+        <% if  !exp.completed %>
+          <span class="glyphicon glyphicon-check boxes"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-unchecked boxes"></span>
+        <% end %>
+      </td>
+      <td> <%= link_to "Update experiment", edit_project_phase_experiment_path(@project.id,@phase.id,exp.id), :class => 'btn btn-active' %> </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <div class="field">
+    <%= f.label "Select the relevant experiments for this sprint:" %>
+    <%= f.collection_check_boxes :experiment_ids, @phase.experiments.all, :id, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+    <% end %>
+  </div>
+
+  <%= link_to "Create a new experiment", new_project_phase_experiment_path(@project.id,@phase.id), :class => 'btn btn-active' %>
+
+  <div class="field form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'Estimated sprint points' %>
+    <%= f.number_field :est_points, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'Average happy score' %>
+    <%= f.number_field :avg_happy, in: 1..5, step: 0.1, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'What actions came out of the retrospective?' %>
+    <%= f.text_field :retro_actions, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'Are you on target?' %><br>
+    <%= f.radio_button :on_target, '1' %> 1
+    <%= f.radio_button :on_target, '2' %> 2
+    <%= f.radio_button :on_target, '3' %> 3
+    <%= f.radio_button :on_target, '4' %> 4
+    <%= f.radio_button :on_target, '5' %> 5
+  </div>
+
+  <div class="field">
+    <%= f.label 'Organization helping you?' %><br>
+    <%= f.radio_button :organization_helping, '1' %> 1
+    <%= f.radio_button :organization_helping, '2' %> 2
+    <%= f.radio_button :organization_helping, '3' %> 3
+    <%= f.radio_button :organization_helping, '4' %> 4
+    <%= f.radio_button :organization_helping, '5' %> 5
+  </div>
+
+  <div class="field">
+    <%= f.label 'Team is able to pull this off' %><br>
+    <%= f.radio_button :able_to_pull_of, '1' %> 1
+    <%= f.radio_button :able_to_pull_of, '2' %> 2
+    <%= f.radio_button :able_to_pull_of, '3' %> 3
+    <%= f.radio_button :able_to_pull_of, '4' %> 4
+    <%= f.radio_button :able_to_pull_of, '5' %> 5
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'What help from management do you need?' %>
+    <%= f.text_field :impediment, class:"form-control" %>
+  </div>
+
+  <%= f.hidden_field :phase_id, value: @phase.id %>
+
+  <div class="actions">
+    <%= f.submit "Start sprinting", class: "btn btn-primary" %>
+  </div>
+<% end %>

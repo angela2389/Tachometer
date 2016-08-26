@@ -1,6 +1,6 @@
-<h1>End of sprint: <%= @sprint.name %></h1>
+<h1>Start of sprint: <%= @sprint.id %></h1>
 <br />
-<%= render 'finalize_form' %>
+<%= render 'begin_form' %>
 
 <%= link_to 'Show', project_phase_sprint_path(@project.id, @phase.id, @sprint) %> |
 <%= link_to 'List', project_phase_sprints_path(@project.id, @phase.id) %>

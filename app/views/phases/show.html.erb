@@ -54,7 +54,7 @@
         <p><progress id="p" value=<%= experiment.ratio_completion_5[:ratio] * 100 %> max=100><span></span>%</progress></p></td>
       </tr>
       <tr >
-        <td colspan="5"></td> 
+        <td colspan="5"></td>
       </tr>
     <% end %>
   </table>
@@ -74,6 +74,7 @@
       <th>End date</th>
       <th>Story points</th>
       <th>Happiness</th>
+      <th colspan="2"></th>
     </tr>
     <% @phase.sprints.order(:start_date).each do |sprint| %>
       <tr>
@@ -84,18 +85,25 @@
           <span class="glyphicon glyphicon-unchecked boxes"></span>
         <% end %>
       </td>
-        <td><%= link_to "sprint #{@phase.sprints.find_index(sprint) + 1}", project_phase_sprint_path(@project.id, @phase.id, sprint) %></td>
+        <td><%= "sprint #{@phase.sprints.find_index(sprint) + 1}" %></td>
         <td><%= sprint.start_date.strftime("%d %B %Y") %></td>
         <td><%= sprint.end_date.strftime("%d %B %Y") %></td>
         <td> </td>
+        <td> </td>
+        <% if !sprint.completed %>
+          <td><%= link_to "Start", sprint_start_path(@project.id, @phase.id, sprint.id) %></td>
+          <td><%= link_to "End", sprint_end_path(@project.id, @phase.id, sprint.id) %></td>
+        <% else %>
+          <td colspan="2">Sprint completed</td>
+        <% end %>
         <td> </td>
       </tr>
     <% end %>
   </table>
   <br>
-  <%= link_to('Create new sprint', new_project_phase_sprint_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
-    <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
 </div>
+
+  <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
 
 <p>
   <strong>Start date:</strong>

@@ -1,0 +1,83 @@
+<p><b>Project:</b> <em><%= @project.name %></em> - <b>Phase:</b> <em><%= @phase.name %></em></p>
+<%= form_for([@project, @phase, @sprint]) do |f| %>
+  <% if @sprint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sprint.errors.count, "error") %> prohibited this sprint from being saved:</h2>
+
+      <ul>
+      <% @sprint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'What have you done?' %>
+    <%= f.text_field :things_done %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Estimated sprint points' %>
+    <%= f.number_field :est_points, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Actual sprint points' %>
+    <%= f.number_field :act_points  %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'What have you learned?' %>
+    <%= f.text_field :things_learned %>
+  </div>
+
+  <% @phase.experiments.each do |exp| %>
+    <h2><%= exp.name %></h2>
+    <%= f.fields_for :experiments, exp do |ff| %>
+    <div>
+      <% if !exp.metric_1.empty? %>
+        <%= ff.label exp.metric_1 %>
+        <%= ff.number_field :target_succes_metric_1, disabled: true %>
+        <%= ff.number_field :act_succes_metric_1 %>
+      <% end %>
+    </div>
+    <div>
+      <% if !exp.metric_2.empty? %>
+        <%= ff.label exp.metric_2 %>
+        <%= ff.number_field :target_succes_metric_2, disabled: true %>
+        <%= ff.number_field :act_succes_metric_2 %>
+      <% end %>
+    </div>
+    <div>
+      <% if !exp.metric_3.empty? %>
+        <%= ff.label exp.metric_3 %>
+        <%= ff.number_field :target_succes_metric_3, disabled: true %>
+        <%= ff.number_field :act_succes_metric_3 %>
+      <% end %>
+    </div>
+    <div>
+      <% if !exp.metric_4.empty? %>
+        <%= ff.label exp.metric_4 %>
+        <%= ff.number_field :target_succes_metric_4, disabled: true %>
+        <%= ff.number_field :act_succes_metric_4 %>
+      <% end %>
+    </div>
+    <div>
+      <% if !exp.metric_5.empty? %>
+        <%= ff.label exp.metric_5 %>
+        <%= ff.number_field :target_succes_metric_5, disabled: true %>
+        <%= ff.number_field :act_succes_metric_5 %>
+      <% end %>
+    </div>
+    <% end %>
+
+  <% end %>
+
+  <%= f.hidden_field :phase_id, value: @phase.id %>
+  <%= f.hidden_field :completed, value: true %>
+
+  <div class="actions">
+    <%= f.submit "End sprint and update experiment data" %>
+  </div>
+<% end %>
