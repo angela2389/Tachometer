@@ -4,9 +4,9 @@ class Phase < ApplicationRecord
   has_one :team
   has_many :sprints
   has_many :experiments
-
   after_create :give_team
   after_update :set_end_date
+  after_update :give_sprints
   #after_update :set_end_date if (:sprintamount.present? && :interval.present? && :start_date.present?)
 #  after_create :give_sprints
   after_save :set_stage_project
@@ -24,14 +24,14 @@ class Phase < ApplicationRecord
     #   self.project.current_stage_id = self.project.phases.find_by(sequence: highest_completed_sequence + 1)
     #   self.project.save
     # end
-  
+
 
   def name
     Project::STAGES[self.sequence]
   end
 
 
- private
+
 
   def set_stage_project
     self.project.set_stage
@@ -56,22 +56,26 @@ class Phase < ApplicationRecord
 
 
   def set_end_date
-    if self.sprint_amount_changed? && self.interval_changed? && self.start_date_changed?
+    if self.sprint_amount.present? && self.interval.present? && self.start_date.present?
     number = self.interval * self.sprint_amount
     date = self.start_date + number.weeks
     self.update(end_date: date) unless date == self.end_date
     else
-    return
+
+
     end
   end
 
   def give_sprints
-    if self.sprints.any?
+     if self.sprints.any?
       (self.sprint_amount - self.sprints.count).times { self.sprint.create }
-    else
-    self.sprint_amount.times { self.sprints.create }
-    self.set_end_date
-    end
+      self.set_sprint_dates
+     else
+     self.sprint_amount.times { self.sprints.create }
+     self.set_end_date
+     self.set_sprint_dates
+
+   end
   end
 
 
