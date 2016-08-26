@@ -72,6 +72,10 @@ class Project < ApplicationRecord
 
   end
 
+  def role_check(user)
+    self.user == user || self.portfoliomanager_id == user.id
+  end
+
 private
 
   def earliest_uncompleted
