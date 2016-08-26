@@ -50,7 +50,7 @@ class PhasesController < ApplicationController
   def update
     respond_to do |format|
       if @phase.update(phase_params)
-        format.html { render :nothing => true }
+        format.html
         format.json { render :nothing => true }
       else
         format.html { render :edit }
