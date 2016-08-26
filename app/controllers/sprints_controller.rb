@@ -63,7 +63,7 @@ class SprintsController < ApplicationController
     end
   end
 
-  def finalize
+  def start_sprint
   end
 
   private
