@@ -27,10 +27,6 @@
     <%= f.date_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
 
-  <div class="field">
-    <%= f.label :completed %>
-    <%= f.check_box :completed, class:"checkbox" %>
-  </div>
 
   <div class="field form-group">
     <%= f.label :domain %>
@@ -52,10 +48,6 @@
     <%= f.text_field :observation, class:"form-control" %>
   </div>
 
-  <div class="field form-group">
-    <%= f.label :measure %>
-    <%= f.text_field :measure, class:"form-control" %>
-  </div>
 
   <div class="field form-group">
     <%= f.label :learned %>
@@ -73,25 +65,56 @@
   </div>
 
   <div class="field form-group">
-    <%= f.label :interviews_planned %>
-    <%= f.number_field :interviews_planned, class:"form-control" %>
+    <%= f.label 'Measure 1' %>
+    <%= f.number_field :metric_1, class:"form-control" %>
   </div>
 
+  <h3>Meaurements</h3>
+
   <div class="field form-group">
-    <%= f.label :interviews_done %>
+    <%= f.label  'Measure 1: Succes' %>
     <%= f.number_field :interviews_done, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :early_adopters_planned %>
-    <%= f.number_field :early_adopters_planned, class:"form-control" %>
+  <div class="field form-group">
+    <%= f.label 'Measure 2' %>
+    <%= f.number_field :metric_1, class:"form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :early_adopters_converted %>
-    <%= f.number_field :early_adopters_converted, class:"form-control" %>
+    <%= f.label  'Measure 2: Succes' %>
+    <%= f.number_field :interviews_done, class:"form-control" %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label 'Measure 3' %>
+    <%= f.number_field :metric_1, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label  'Measure 3: Succes' %>
+    <%= f.number_field :interviews_done, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'Measure 4' %>
+    <%= f.number_field :metric_1, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label  'Measure 4: Succes' %>
+    <%= f.number_field :interviews_done, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label 'Measure 5' %>
+    <%= f.number_field :metric_1, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label  'Measure 5: Succes' %>
+    <%= f.number_field :interviews_done, class:"form-control" %>
+  </div>
 
 
 
