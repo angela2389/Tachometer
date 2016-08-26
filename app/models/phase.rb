@@ -29,4 +29,20 @@ class Phase < ApplicationRecord
     manager = self.project.user
     self.team.team_members.create(user:manager,role:Team::ROLES[0])
   end
+
+  def get_mailer_for_current_phase
+    team_members = self.team.team_members
+    users = team_members.map do |member|
+      member.user
+    end
+    sprints = []
+    self.sprints.each do |sprint|
+      today = Date.today
+      if (sprint.end_date >= today) && (sprint.end_date <= (today + 7))
+        sprints << sprint
+      end
+    end
+    {users: users, sprints:sprints}
+  end
+
 end

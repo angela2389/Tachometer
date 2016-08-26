@@ -167,5 +167,8 @@
   </table>
   <br>
   <%= link_to('Create new sprint', new_project_phase_sprint_path(@project.id, @phase.id), :class => 'btn btn-large btn-success')  %>
-    <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
+  <%= link_to('Team', project_team_path(@team.project @team), :class => 'btn btn-large btn-success')  %>
+  <% if !@phase.sprints.empty? %>
+    <%= link_to("Send email reminders", send_emails_path(phase_id: @phase.id), method: :post, class: 'btn btn-large btn-primary') %>
+  <% end %>
 </div>

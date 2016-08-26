@@ -4,6 +4,13 @@ class PhasesController < ApplicationController
   before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :set_phase, only: [:show, :edit, :update, :destroy]
 
+  include SprintEmail # method "run_mailer(project)" is now available for project
+  def send_emails
+    phase_id = params[:phase_id]
+    phase = Phase.find(phase_id)
+    run_mailer(phase)
+  end
+
   # GET /phases
   # GET /phases.json
   def index
