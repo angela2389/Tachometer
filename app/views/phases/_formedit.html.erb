@@ -19,66 +19,23 @@
 <div class="container">
     <hr>
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    <h4 class="panel-title">
-                        <%= f.label :start_date %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <%= f.datetime_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
-                </div>
-            </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    <h4 class="panel-title">
-                        <%= f.label :end_date %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.datetime_select :end_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
-                </div>
-            </div>
-        </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
+                  <h4 class="panel-title">
+                      <%= f.label :background %>
+                  </h4>
+              </a>
+          </div>
+          <div id="collapseSixteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                  <%= f.text_area :background, class:"form-control" %>
+              </div>
+          </div>
+      </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                    <h4 class="panel-title">
-                        <%= f.label :interval %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>How many weeks will your sprint run?</p>
-                    <%= f.number_field :interval, class:"form-control", placeholder: "0" %>
-                </div>
-            </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                    <h4 class="panel-title">
-                        <%= f.label 'Phase' %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseFour" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.select :sequence, [[Project::STAGES[0], 0], [Project::STAGES[1], 1], [Project::STAGES[2], 2], [Project::STAGES[3], 3]], {}, class: "form-control" %>
-                </div>
-            </div>
-        </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -234,7 +191,7 @@
             <div class="panel-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">
                     <h4 class="panel-title">
-                        <%= f.label :proof_of_value %>
+                        <%= f.label 'Project goal' %>
                     </h4>
                 </a>
             </div>
@@ -244,22 +201,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
-                    <h4 class="panel-title">
-                        <%= f.label :background %>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseSixteen" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <%= f.text_area :background, class:"form-control" %>
-                </div>
-            </div>
-        </div>
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">
@@ -271,6 +212,35 @@
             <div id="collapseSeventeen" class="panel-collapse collapse">
                 <div class="panel-body">
                     <%= f.text_area :note, class:"form-control" %>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <h4 class="panel-title">
+                        <%= f.label :start_date %>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <%= f.datetime_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <h4 class="panel-title">
+                            <%= f.label :interval %>
+                        </h4>
+                    </a>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>How long is the sprint></p>
+                        <%= f.number_field :interval, class:"form-control", placeholder: "0" %>
+                    </div>
                 </div>
             </div>
         </div>
