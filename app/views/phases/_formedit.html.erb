@@ -17,7 +17,7 @@
 
 
 <div class="container">
-    <hr>
+<hr>
     <div class="panel-group" id="accordion">
 
       <div class="panel panel-default">
@@ -197,7 +197,7 @@
             </div>
             <div id="collapseFifteen" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <%= f.text_area :proof_of_value, class:"form-control" %>
+                    <%= f.text_area :proof_of_value, class:"form-control", placeholder: "" %>
                 </div>
             </div>
         </div>
@@ -228,6 +228,7 @@
                     <%= f.datetime_select :start_date, { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
                 </div>
             </div>
+          </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
@@ -238,8 +239,8 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <p>How long is the sprint></p>
-                        <%= f.number_field :interval, class:"form-control", placeholder: "0" %>
+                        <p>How long is the sprint?</p>
+                        <%= f.select :interval, [["1 week", 1] ,["2 weeks", 2], ["3 weeks", 3],["4 weeks", 4]], {}, class: "form-control" %>
                     </div>
                 </div>
             </div>
