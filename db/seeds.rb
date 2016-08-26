@@ -181,6 +181,9 @@ phase5_1 = Phase.create(
 project1.current_stage_id = phase1_1.id; project1.save
 project2.current_stage_id = phase2_2.id; project2.save
 project3.current_stage_id = phase3_1.id; project3.save
+project4.current_stage_id = phase4_1.id; project4.save
+project5.current_stage_id = phase5_1.id; project5.save
+project6.current_stage_id = phase6_1.id; project6.save
 
 
 
