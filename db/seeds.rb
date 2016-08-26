@@ -307,11 +307,74 @@ sprint1_1_1 = Sprint.create(
   start_date: Date.today - 2,
   end_date: Date.today + 5,
   completed: false,
-  phase: phase1_1
+  phase: phase1_1,
+  avg_happy: 3.9,
+  on_target: 3,
+  organization_helping: 1,
+  able_to_pull_of: 4
 )
 sprint1_1_2 = Sprint.create(
   start_date: Date.today + 6,
   end_date: Date.today + 13,
   completed: false,
-  phase: phase1_1
+  phase: phase1_1,
+  avg_happy: 4.8,
+  on_target: 4,
+  organization_helping: 3,
+  able_to_pull_of: 5
+)
+
+sprint1_1_3 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase2_1,
+  avg_happy: 4.8,
+  on_target: 5,
+  organization_helping: 3,
+  able_to_pull_of: 3
+)
+
+sprint1_1_4 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase3_1,
+  avg_happy: 4.1,
+  on_target: 5,
+  organization_helping: 3,
+  able_to_pull_of: 3
+)
+
+sprint1_1_5 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase4_1,
+  avg_happy: 4.8,
+  on_target: 4,
+  organization_helping: 3,
+  able_to_pull_of: 4
+)
+
+sprint1_1_6 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase5_1,
+  avg_happy: 4.5,
+  on_target: 4,
+  organization_helping: 1,
+  able_to_pull_of: 3
+)
+
+sprint1_1_7 = Sprint.create(
+  start_date: Date.today + 6,
+  end_date: Date.today + 13,
+  completed: false,
+  phase: phase6_1,
+  avg_happy: 3.5,
+  on_target: 4,
+  organization_helping: 3,
+  able_to_pull_of: 4
 )
