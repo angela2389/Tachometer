@@ -35,19 +35,6 @@ class Project < ApplicationRecord
     end
   end
 
-  def get_mailer_for_current_phase
-    current_phase = Phase.find(self.current_stage_id)
-    users = current_phase.team.users
-    sprints = []
-    current_phase.sprints.each do |sprint|
-      today = Date.today
-      if (sprint.end_date >= today) && (sprint.end_date <= (today + 7))
-        sprints << sprint
-      end
-    end
-    {users: users, sprints:sprints}
-  end
-
   def define_next_sequence
     # existing_sequences = self.phases.map{|x| x[:sequence]}
     # if existing_sequences.length > 0

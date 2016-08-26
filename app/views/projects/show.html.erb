@@ -42,13 +42,10 @@
   <%= link_to 'New phase', new_project_phase_path(@project.id), :class => 'btn btn-large btn-success' %>
 </div>
 
-<br>
-<%= button_to "Send weekly emails for current phase", { project_id: @project.id, action: "send_weekly_emails"} %>
-<br>
 <% if can? :update, @project %>
-<%= link_to 'Edit project', edit_project_path(@project) %>
+  <%= link_to 'Edit project', edit_project_path(@project) %>
 <% end %>
 <% if can? :destroy, @project %>
-<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 <%= link_to 'List', projects_path %>

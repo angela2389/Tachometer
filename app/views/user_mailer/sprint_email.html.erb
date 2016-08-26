@@ -2,15 +2,49 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
   </head>
   <body>
-    <p>Hi <%= @user.email %>,</p>
-
-    <p>
-      Project <em><%= @project.name %></em>, currently in
-      <em><%= @project.current_phase.name %></em> phase, is completing a sprint this week. 
-       Remember to fill in the perspective form!
-    </p>
-
+    <p>Hi <%= @user.email %> !</p>
+    <p>Please remember to fill in the appropriate forms</p>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3"><span>Project: <em><%= @project.name %></em></span></th>
+        </tr>
+        <tr>
+          <th colspan="3"><span>Phase: <em><%= @phase.name %></em></span></th>
+        </tr>
+        <tr>
+          <th>Sprint</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @phase.sprints.each do |sprint| %>
+        <tr>
+          <td><%= sprint.name %></td>
+          <td><%= sprint.start_date %></td>
+          <td><%= sprint.end_date %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p>Big kisses from Tachometer !</p>
   </body>
 </html>
