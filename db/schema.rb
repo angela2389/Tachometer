@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825113256) do
+ActiveRecord::Schema.define(version: 20160826092512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160825113256) do
     t.integer  "current_stage_id"
     t.integer  "user_id"
     t.integer  "portfoliomanager_id"
+    t.integer  "coach_id"
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20160825113256) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "role"
+    t.string   "phonenumber"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

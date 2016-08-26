@@ -25,8 +25,7 @@
 
     <div class="field form_group">
       <%= f.label :portfoliomanager_id %>
-      <%= f.collection_select(:portfoliomanager_id, User.where(role: 'admin'), :id, :first_name) %>
-
+      <%= f.collection_select(:portfoliomanager_id, User.where(role: 'portfoliomanager'), :id, :first_name) %>
 
     <%= f.hidden_field :active, :value => TRUE %>
 

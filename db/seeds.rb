@@ -9,13 +9,14 @@ User.delete_all
 
 # Users
 
-user1 = User.create( email: 'tachometero1@gmail.com', password: 'abcd1234', first_name: 'Joop', last_name: 'Braakhekke', role: 'user')
-user2 = User.create( email: 'ruben@sloote.nl', password: 'abcd1234', first_name: 'Ruben', last_name: 'Sloote', role: 'user' )
-user3 = User.create( email: 'tachometero3@gmail.com', password: 'abcd1234', first_name: 'Anna', last_name: 'Van der Breggen', role: 'user' )
-user4 = User.create( email: 'tachometero4@gmail.com', password: 'abcd1234', first_name: 'Koen', last_name: 'Verweij', role: 'user' )
-user5 = User.create( email: 'tachometero5@gmail.com', password: 'abcd1234', first_name: 'Lodewijk', last_name: 'Napoleon', role: 'user' )
-user6 = User.create( email: 'doris@gmail.com', password: 'abcd1234', first_name: 'Doris', last_name: 'Dromer', role: 'admin' )
-user7 = User.create( email: 'miriam@tocino.com', password: 'abcd1234', first_name: 'Miriam', last_name: 'Tocino', role: 'admin' )
+user1 = User.create( email: 'tachometero1@gmail.com', password: 'abcd1234', first_name: 'Joop', last_name: 'Braakhekke', phonenumber: '020-123456', role: 'teammember')
+user2 = User.create( email: 'ruben@sloote.nl', password: 'abcd1234', first_name: 'Ruben', last_name: 'Sloote', phonenumber: '020-123456', role: 'teammember' )
+user3 = User.create( email: 'tachometero3@gmail.com', password: 'abcd1234', first_name: 'Anna', last_name: 'Van der Breggen', phonenumber: '020-123456', role: 'teammember' )
+user4 = User.create( email: 'tachometero4@gmail.com', password: 'abcd1234', first_name: 'Koen', last_name: 'Verweij', phonenumber: '020-123456', role: 'teammember' )
+user5 = User.create( email: 'tachometero5@gmail.com', password: 'abcd1234', first_name: 'Lodewijk', last_name: 'van Beveren', phonenumber: '020-123456', role: 'teammember' )
+user6 = User.create( email: 'doris@gmail.com', password: 'abcd1234', first_name: 'Doris', last_name: 'Dromer', phonenumber: '020-123456', role: 'portfoliomanager' )
+user7 = User.create( email: 'miriam@tocino.com', password: 'abcd1234', first_name: 'Miriam', last_name: 'Tocino', phonenumber: '020-123456', role: 'portfoliomanager' )
+user8 = User.create( email: 'douwe.leanup@gmail.com', password: 'douwe1', first_name: 'Douwe', last_name: 'Wester', phonenumber: '020-888888', role: 'coach')
 # Experiments
 
 # Projects
@@ -27,7 +28,8 @@ project1 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user1,
-  portfoliomanager_id: user6.id
+  portfoliomanager_id: user6.id,
+  coach_id: user8.id
   # current_stage_id: phase1_1.id
 )
 project2 = Project.create(
@@ -37,7 +39,8 @@ project2 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: false,
   user: user2,
-  portfoliomanager_id: user6.id
+  portfoliomanager_id: user6.id,
+  coach_id: user8.id
   # current_stage_id: phase2_1.id
 )
 
@@ -48,7 +51,8 @@ project3 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user3,
-  portfoliomanager_id: user6.id
+  portfoliomanager_id: user6.id,
+  coach_id: user8.id
 )
 
 project4 = Project.create(
@@ -58,7 +62,8 @@ project4 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user2,
-  portfoliomanager_id: user7.id
+  portfoliomanager_id: user7.id,
+  coach_id: user8.id
 )
 
 project5 = Project.create(
@@ -68,7 +73,8 @@ project5 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: false,
   user: user4,
-  portfoliomanager_id: user7.id
+  portfoliomanager_id: user7.id,
+  coach_id: user8.id
 )
 
 project6 = Project.create(
@@ -78,7 +84,8 @@ project6 = Project.create(
   Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.",
   active: true,
   user: user5,
-  portfoliomanager_id: user7.id
+  portfoliomanager_id: user7.id,
+  coach_id: user8.id
 )
 
 # Phases (project/phase)
