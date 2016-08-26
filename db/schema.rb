@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(version: 20160826114358) do
     t.integer  "early_adopters_planned"
     t.integer  "early_adopters_converted"
     t.boolean  "conclusion"
+    t.string   "metric_1"
+    t.integer  "target_succes_metric_1"
+    t.integer  "act_succes_metric_1"
+    t.string   "metric_2"
+    t.integer  "target_succes_metric_2"
+    t.integer  "act_succes_metric_2"
+    t.string   "metric_3"
+    t.integer  "target_succes_metric_3"
+    t.integer  "act_succes_metric_3"
+    t.string   "metric_4"
+    t.integer  "target_succes_metric_4"
+    t.integer  "act_succes_metric_4"
+    t.string   "metric_5"
+    t.integer  "target_succes_metric_5"
+    t.integer  "act_succes_metric_5"
     t.index ["phase_id"], name: "index_experiments_on_phase_id", using: :btree
     t.index ["sprint_id"], name: "index_experiments_on_sprint_id", using: :btree
     t.index ["team_id"], name: "index_experiments_on_team_id", using: :btree
