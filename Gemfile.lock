@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/mshibuya/remotipart.git
-  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
+  remote: https://github.com/mshibuya/remotipart.git
+  revision: a1860d64aef484047bc1ef50e2f19ef2480eacf9
   specs:
-    remotipart (1.2.1)
+    remotipart (1.4.4)
 
 GEM
   remote: https://rubygems.org/
@@ -78,7 +78,8 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
-    i18n (0.7.0)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
